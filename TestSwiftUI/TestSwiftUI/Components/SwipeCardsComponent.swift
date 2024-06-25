@@ -99,6 +99,7 @@ struct SwipeCardsComponent: View {
     }
 
     private func changeCard(direction: Direction) {
+        footerManager.dropStates()
         if direction == .right {
             let nextIndex = currentIndex + 1
             if nextIndex < viewModel.cards.count {

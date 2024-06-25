@@ -18,6 +18,14 @@ final class FooterManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var isWordsEnd: Bool = false
     var audioPlayer: AVAudioPlayer = AVAudioPlayer()
 
+    func dropStates() {
+        isPlaying = false
+        isPhotoSaved = false
+        isWordShared = false
+        isWordSavedFavorite = false
+        isWordsEnd = false
+    }
+
     func playSound(sound: String) {
         guard let asset = NSDataAsset(name: sound) else {
             print("Аудио файл не найден в Assets")
