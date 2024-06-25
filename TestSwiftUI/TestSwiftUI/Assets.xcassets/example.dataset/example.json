@@ -1,0 +1,37 @@
+{
+    "cards": [
+        {
+            "id": "1",
+            "imageName": "img",
+            "title": "Ephemeral",
+            "type": "adjective",
+            "transcrtiption": "[ɪˈfɛmərəl]",
+            "description": "Lasting for a very short time; fleeting.",
+            "soundName": "exampleSound",
+            "exampleText": "The beauty of the sunset was ephemeral, fading away within minutes.",
+            "atributes": ["transient", "fleeting", "momentary"]
+        },
+        {
+            "id": "2",
+            "imageName": "img2",
+            "title": "Sycophant",
+            "type": "adjective",
+            "transcrtiption": "[ˈsɪkəfənt]",
+            "description": "A person who acts obsequiously toward someone important in order to gain advantage.",
+            "soundName": "exampleSound",
+            "exampleText": "He surrounded himself with sycophants who constantly praised him, regardless of his actions.",
+            "atributes": ["flatterer", "toady", "yes-man"]
+        },
+        {
+            "id": "3",
+            "imageName": "img3",
+            "title": "Halcyon",
+            "type": "adjective",
+            "transcrtiption": "[ˈhælsiən]",
+            "description": "Denoting a period of time in the past that was idyllically happy and peaceful.",
+            "soundName": "exampleSound",
+            "exampleText": "She fondly remembered the halcyon days of her childhood spent by the seaside.",
+            "atributes": ["tranquil", "serene", "blissful"]
+        }
+    ]
+}
