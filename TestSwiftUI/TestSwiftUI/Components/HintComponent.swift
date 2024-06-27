@@ -24,8 +24,8 @@ struct HintComponent: View {
             }, label: {
                 Text("OK")
                     .foregroundStyle(Color.white)
+                    .frame(minWidth: 200, maxWidth: 215, minHeight: 35, maxHeight: 40)
             })
-            .frame(minWidth: 200, maxWidth: 215, minHeight: 35, maxHeight: 40)
             .background {
                 RoundedRectangle(cornerRadius: 20, style: .circular)
                     .fill(Color.deepButton)

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CardComponent: View {
     var cardData: Card
-    @State var isShareTapped: Bool = false
     @EnvironmentObject var footerManager: FooterManager
 
     var body: some View {
@@ -19,48 +18,8 @@ struct CardComponent: View {
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
-                    .frame(width: UIScreen.main.bounds.width)
+                    .frame(width: .infinity)
                     .frame(minHeight: 478)
-
-                VStack {
-                    HStack {
-                        Button(action: {
-
-                        }) {
-                            Image(uiImage: .closeIcone)
-                                .resizable()
-                                .frame(width: 32, height: 32)
-                                .padding()
-                                .background(Color.appLight.opacity(0.4))
-                        }
-                        .frame(width: 56, height: 56)
-                        .clipShape(Circle())
-
-                        Spacer()
-
-                        Button(action: {
-                            self.isShareTapped = true
-                        }) {
-                            Image(uiImage: .shareIcon)
-                                .resizable()
-                                .frame(width: 32, height: 32)
-                                .padding()
-                                .background(Color.appLight.opacity(0.4))
-                        }
-                        .frame(width: 56, height: 56)
-                        .clipShape(Circle())
-                        .sheet(isPresented: $isShareTapped, content: {
-                            ShareSheet(items: [UIImage(named: cardData.imageName) ?? .img, "\(cardData.title) - \(cardData.transcrtiption)", ])
-                                .onDisappear {
-                                    footerManager.isWordShared = true
-                                }
-                        })
-                    }
-                    .padding(.top, 38)
-                    .padding(.horizontal)
-
-                    Spacer()
-                }
             }
             VStack {
                 Spacer()

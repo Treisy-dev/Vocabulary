@@ -12,77 +12,106 @@ struct SwipeCardsComponent: View {
     @EnvironmentObject var viewModel: MainViewModel
     @GestureState private var dragState = DragState.inactive
     @State private var removalTransition = AnyTransition.move(edge: .trailing)
+    @State var isShareTapped: Bool = false
     @StateObject var footerManager: FooterManager = FooterManager()
 
     private let dragThreshold: CGFloat = 80.0
 
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                VStack {
-                    if viewModel.cards.indices.contains(currentIndex) {
-                        CardComponent(cardData: viewModel.cards[currentIndex])
-                            .frame(width: geometry.size.width, height: geometry.size.height - 64)
-                            .zIndex(0.5)
-                            .offset(x: self.dragState.translation.width, y: 0)
-                            .animation(.interpolatingSpring(stiffness: 180, damping: 100), value: dragState.translation.width)
-                            .gesture(self.dragGesture())
-                            .transition(self.removalTransition)
-                            .environmentObject(footerManager)
+        VStack {
+            ZStack(alignment: .top) {
+                HStack {
+                    Button(action: {
+
+                    }) {
+                        Image(uiImage: .closeIcone)
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .padding()
+                            .background(Color.appLight.opacity(0.4))
                     }
+                    .frame(width: 56, height: 56)
+                    .clipShape(Circle())
 
-                    FooterButtonsComponent(
-                        image: UIImage(named: viewModel.cards[currentIndex].imageName) ?? .img,
-                        audioName: viewModel.cards[currentIndex].soundName,
-                        wordId: viewModel.cards[currentIndex].id)
-                    .frame(height: 64)
-                    .padding(.bottom, 20)
-                    .environmentObject(footerManager)
-                }
+                    Spacer()
 
-                if footerManager.isPhotoSaved {
-                    SavedAlertComponent(titleText: "The word is saved to your Photos")
-                        .zIndex(0.6)
-                        .position(x: geometry.frame(in: .global).midX - 10, y: geometry.frame(in: .global).minY - 10)
-                        .frame(width: geometry.size.width - 20)
-                        .environmentObject(footerManager)
-                }
-
-                if footerManager.isWordShared {
-                    SavedAlertComponent(titleText: "You shared a word")
-                        .zIndex(0.6)
-                        .position(x: geometry.frame(in: .global).midX - 10, y: geometry.frame(in: .global).minY - 10)
-                        .frame(width: geometry.size.width - 20)
-                        .environmentObject(footerManager)
-                }
-
-                if footerManager.isWordSavedFavorite {
-                    if footerManager.checkFavorites(id: viewModel.cards[currentIndex].id) {
-                        SavedAlertComponent(titleText: "The word is saved to My Vocabulary", description: "You can find your words in My Vocabulary")
-                            .zIndex(0.6)
-                            .position(x: geometry.frame(in: .global).midX - 10, y: geometry.frame(in: .global).minY - 10)
-                            .frame(width: geometry.size.width - 20)
-                            .environmentObject(footerManager)
-                    } else {
-                        SavedAlertComponent(titleText: "The word is deleted from My Vocabulary")
-                            .zIndex(0.6)
-                            .position(x: geometry.frame(in: .global).midX - 10, y: geometry.frame(in: .global).minY - 10)
-                            .frame(width: geometry.size.width - 20)
-                            .environmentObject(footerManager)
+                    Button(action: {
+                        self.isShareTapped = true
+                    }) {
+                        Image(uiImage: .shareIcon)
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .padding()
+                            .background(Color.appLight.opacity(0.4))
                     }
+                    .frame(width: 56, height: 56)
+                    .clipShape(Circle())
+                    .sheet(isPresented: $isShareTapped, content: {
+                        ShareSheet(items: [UIImage(named: viewModel.cards[currentIndex].imageName) ?? .img, "\(viewModel.cards[currentIndex].title) - \(viewModel.cards[currentIndex].transcrtiption)", ])
+                            .onDisappear {
+                                footerManager.isWordShared = true
+                            }
+                    })
                 }
-
-                if footerManager.isWordsEnd {
-                    Color.black.opacity(0.5)
-                        .ignoresSafeArea()
-                        .zIndex(0.7)
-
-                    WordsEndComponent()
-                        .zIndex(0.8)
+                .zIndex(0.6)
+                .padding(.horizontal)
+                if viewModel.cards.indices.contains(currentIndex) {
+                    CardComponent(cardData: viewModel.cards[currentIndex])
+                        .zIndex(0.5)
+                        .offset(x: self.dragState.translation.width, y: 0)
+                        .animation(.interpolatingSpring(stiffness: 180, damping: 100), value: dragState.translation.width)
+                        .gesture(self.dragGesture())
+                        .transition(self.removalTransition)
                         .environmentObject(footerManager)
                 }
             }
+            FooterButtonsComponent(
+                image: UIImage(named: viewModel.cards[currentIndex].imageName) ?? .img,
+                audioName: viewModel.cards[currentIndex].soundName,
+                wordId: viewModel.cards[currentIndex].id
+            )
+            .frame(height: 64)
+            .environmentObject(footerManager)
         }
+        .overlay(alignment: .top, content: { alertOverlay })
+    }
+
+    private var alertOverlay: some View {
+        ZStack {
+            if footerManager.isPhotoSaved {
+                SavedAlertComponent(titleText: "The word is saved to your Photos")
+                    .zIndex(0.6)
+                    .padding(.horizontal, 10)
+            }
+
+            if footerManager.isWordShared {
+                SavedAlertComponent(titleText: "You shared a word")
+                    .zIndex(0.6)
+                    .padding(.horizontal, 10)
+            }
+
+            if footerManager.isWordSavedFavorite {
+                if footerManager.checkFavorites(id: viewModel.cards[currentIndex].id) {
+                    SavedAlertComponent(titleText: "The word is saved to My Vocabulary", description: "You can find your words in My Vocabulary")
+                        .zIndex(0.6)
+                        .padding(.horizontal, 10)
+                } else {
+                    SavedAlertComponent(titleText: "The word is deleted from My Vocabulary")
+                        .zIndex(0.6)
+                        .padding(.horizontal, 10)
+                }
+            }
+
+            if footerManager.isWordsEnd {
+                Color.black.opacity(0.5)
+                    .ignoresSafeArea()
+                    .zIndex(0.7)
+
+                WordsEndComponent()
+                    .zIndex(0.8)
+            }
+        }
+        .environmentObject(footerManager)
     }
 
     private func dragGesture() -> some Gesture {
