@@ -18,7 +18,6 @@ struct CardComponent: View {
                     .resizable()
                     .scaledToFill()
                     .edgesIgnoringSafeArea(.all)
-                    .frame(width: .infinity)
                     .frame(minHeight: 478)
             }
             VStack {

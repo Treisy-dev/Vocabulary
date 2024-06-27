@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct TestSwiftUIApp: App {
+    @StateObject var mainViewModel: MainViewModel = MainViewModel()
     var body: some Scene {
         WindowGroup {
-            MainView()
+            VocabularyView().environmentObject(mainViewModel)
         }
     }
 }

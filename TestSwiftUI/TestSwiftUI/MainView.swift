@@ -8,18 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    @AppStorage("isFirstOpen") var isFirstOpen: Bool = true
-    @StateObject var mainViewModel: MainViewModel = MainViewModel()
+
     var body: some View {
-        ZStack {
-            VStack {
-                SwipeCardsComponent().environmentObject(mainViewModel)
-            }
-            .blur(radius: isFirstOpen ? 5 : 0)
-            if isFirstOpen {
-                HintComponent()
-            }
-        }
+        Text("Hello Word")
     }
 }
 
