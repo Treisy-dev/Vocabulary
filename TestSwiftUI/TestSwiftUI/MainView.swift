@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct MainView: View {
+    @AppStorage("isFirstEntry") var isFirstEntry: Bool = true
+    @StateObject var mainViewModel: MainViewModel = MainViewModel()
 
     var body: some View {
-        Text("Hello Word")
+        if isFirstEntry {
+            OnboardingView()
+        } else {
+            VocabularyView().environmentObject(mainViewModel)
+        }
     }
 }
 
