@@ -12,20 +12,58 @@ struct SwipeCardsComponent: View {
     @EnvironmentObject var viewModel: MainViewModel
     @GestureState private var dragState = DragState.inactive
     @State private var removalTransition = AnyTransition.move(edge: .trailing)
+    @State var isShareTapped: Bool = false
     @StateObject var footerManager: FooterManager = FooterManager()
 
     private let dragThreshold: CGFloat = 80.0
 
     var body: some View {
         VStack {
-            if viewModel.cards.indices.contains(currentIndex) {
-                CardComponent(cardData: viewModel.cards[currentIndex])
-                    .zIndex(0.5)
-                    .offset(x: self.dragState.translation.width, y: 0)
-                    .animation(.interpolatingSpring(stiffness: 180, damping: 100), value: dragState.translation.width)
-                    .gesture(self.dragGesture())
-                    .transition(self.removalTransition)
-                    .environmentObject(footerManager)
+            ZStack(alignment: .top) {
+                HStack {
+                    Button(action: {
+
+                    }) {
+                        Image(uiImage: .closeIcone)
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .padding()
+                            .background(Color.appLight.opacity(0.4))
+                    }
+                    .frame(width: 56, height: 56)
+                    .clipShape(Circle())
+
+                    Spacer()
+
+                    Button(action: {
+                        self.isShareTapped = true
+                    }) {
+                        Image(uiImage: .shareIcon)
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                            .padding()
+                            .background(Color.appLight.opacity(0.4))
+                    }
+                    .frame(width: 56, height: 56)
+                    .clipShape(Circle())
+                    .sheet(isPresented: $isShareTapped, content: {
+                        ShareSheet(items: [UIImage(named: viewModel.cards[currentIndex].imageName) ?? .img, "\(viewModel.cards[currentIndex].title) - \(viewModel.cards[currentIndex].transcrtiption)", ])
+                            .onDisappear {
+                                footerManager.isWordShared = true
+                            }
+                    })
+                }
+                .zIndex(0.6)
+                .padding(.horizontal)
+                if viewModel.cards.indices.contains(currentIndex) {
+                    CardComponent(cardData: viewModel.cards[currentIndex])
+                        .zIndex(0.5)
+                        .offset(x: self.dragState.translation.width, y: 0)
+                        .animation(.interpolatingSpring(stiffness: 180, damping: 100), value: dragState.translation.width)
+                        .gesture(self.dragGesture())
+                        .transition(self.removalTransition)
+                        .environmentObject(footerManager)
+                }
             }
             FooterButtonsComponent(
                 image: UIImage(named: viewModel.cards[currentIndex].imageName) ?? .img,
@@ -44,14 +82,12 @@ struct SwipeCardsComponent: View {
                 SavedAlertComponent(titleText: "The word is saved to your Photos")
                     .zIndex(0.6)
                     .padding(.horizontal, 10)
-                    .environmentObject(footerManager)
             }
 
             if footerManager.isWordShared {
                 SavedAlertComponent(titleText: "You shared a word")
                     .zIndex(0.6)
                     .padding(.horizontal, 10)
-                    .environmentObject(footerManager)
             }
 
             if footerManager.isWordSavedFavorite {
@@ -59,12 +95,10 @@ struct SwipeCardsComponent: View {
                     SavedAlertComponent(titleText: "The word is saved to My Vocabulary", description: "You can find your words in My Vocabulary")
                         .zIndex(0.6)
                         .padding(.horizontal, 10)
-                        .environmentObject(footerManager)
                 } else {
                     SavedAlertComponent(titleText: "The word is deleted from My Vocabulary")
                         .zIndex(0.6)
                         .padding(.horizontal, 10)
-                        .environmentObject(footerManager)
                 }
             }
 
@@ -75,9 +109,9 @@ struct SwipeCardsComponent: View {
 
                 WordsEndComponent()
                     .zIndex(0.8)
-                    .environmentObject(footerManager)
             }
         }
+        .environmentObject(footerManager)
     }
 
     private func dragGesture() -> some Gesture {

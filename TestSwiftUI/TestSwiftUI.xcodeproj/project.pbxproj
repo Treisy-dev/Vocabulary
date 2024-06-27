@@ -15,7 +15,6 @@
 		C357BE752C24ACB30099AB1F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BE742C24ACB30099AB1F /* MainView.swift */; };
 		C357BE772C24ACB40099AB1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C357BE762C24ACB40099AB1F /* Assets.xcassets */; };
 		C357BE7A2C24ACB40099AB1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C357BE792C24ACB40099AB1F /* Preview Assets.xcassets */; };
-		C357BE952C24D1500099AB1F /* CharisSILR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C357BE942C24D1500099AB1F /* CharisSILR.ttf */; };
 		C357BE9A2C25AD9B0099AB1F /* FooterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BE992C25AD9B0099AB1F /* FooterManager.swift */; };
 		C357BEA02C25BD540099AB1F /* CardAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BE9F2C25BD540099AB1F /* CardAttribute.swift */; };
 		C357BEA22C25BD950099AB1F /* CardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEA12C25BD950099AB1F /* CardComponent.swift */; };
@@ -23,6 +22,7 @@
 		C357BEA62C25C1200099AB1F /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEA52C25C1200099AB1F /* CardModel.swift */; };
 		C357BEA82C25C73E0099AB1F /* SwipeCardsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEA72C25C73E0099AB1F /* SwipeCardsComponent.swift */; };
 		C357BEB12C2B2F660099AB1F /* WordsEndComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEB02C2B2F660099AB1F /* WordsEndComponent.swift */; };
+		C37BA0632C2D784600E9925C /* CharisSILR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C357BE942C24D1500099AB1F /* CharisSILR.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -195,7 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C357BE952C24D1500099AB1F /* CharisSILR.ttf in Resources */,
+				C37BA0632C2D784600E9925C /* CharisSILR.ttf in Resources */,
 				C357BE7A2C24ACB40099AB1F /* Preview Assets.xcassets in Resources */,
 				C357BE772C24ACB40099AB1F /* Assets.xcassets in Resources */,
 			);
