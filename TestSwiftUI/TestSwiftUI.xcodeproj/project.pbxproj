@@ -22,7 +22,7 @@
 		C357BEA62C25C1200099AB1F /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEA52C25C1200099AB1F /* CardModel.swift */; };
 		C357BEA82C25C73E0099AB1F /* SwipeCardsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEA72C25C73E0099AB1F /* SwipeCardsComponent.swift */; };
 		C357BEB12C2B2F660099AB1F /* WordsEndComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEB02C2B2F660099AB1F /* WordsEndComponent.swift */; };
-		C37BA0632C2D784600E9925C /* CharisSILR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C357BE942C24D1500099AB1F /* CharisSILR.ttf */; };
+		C37BA0662C2D7BAD00E9925C /* CharisSILR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C37BA0652C2D7BAD00E9925C /* CharisSILR.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,6 @@
 		C357BE742C24ACB30099AB1F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C357BE762C24ACB40099AB1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C357BE792C24ACB40099AB1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C357BE942C24D1500099AB1F /* CharisSILR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = CharisSILR.ttf; path = "../../../../../../Downloads/Charis SIL/CharisSILR.ttf"; sourceTree = "<group>"; };
 		C357BE992C25AD9B0099AB1F /* FooterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterManager.swift; sourceTree = "<group>"; };
 		C357BE9F2C25BD540099AB1F /* CardAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAttribute.swift; sourceTree = "<group>"; };
 		C357BEA12C25BD950099AB1F /* CardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardComponent.swift; sourceTree = "<group>"; };
@@ -44,6 +43,7 @@
 		C357BEA52C25C1200099AB1F /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		C357BEA72C25C73E0099AB1F /* SwipeCardsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsComponent.swift; sourceTree = "<group>"; };
 		C357BEB02C2B2F660099AB1F /* WordsEndComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsEndComponent.swift; sourceTree = "<group>"; };
+		C37BA0652C2D7BAD00E9925C /* CharisSILR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = CharisSILR.ttf; path = ../../../../../../Desktop/CharisSILR.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 		2A7B72E42C24CFDD0088808A /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				C357BE942C24D1500099AB1F /* CharisSILR.ttf */,
+				C37BA0652C2D7BAD00E9925C /* CharisSILR.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -195,7 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C37BA0632C2D784600E9925C /* CharisSILR.ttf in Resources */,
+				C37BA0662C2D7BAD00E9925C /* CharisSILR.ttf in Resources */,
 				C357BE7A2C24ACB40099AB1F /* Preview Assets.xcassets in Resources */,
 				C357BE772C24ACB40099AB1F /* Assets.xcassets in Resources */,
 			);
