@@ -24,5 +24,5 @@ struct VocabularyView: View {
 }
 
 #Preview {
-    VocabularyView()
+    VocabularyView().environmentObject(MainViewModel())
 }
