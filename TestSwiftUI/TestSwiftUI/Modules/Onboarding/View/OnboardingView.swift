@@ -13,7 +13,7 @@ struct OnboardingView: View {
     @State var descriptionText: String = "Learn new words every day and expand your vocabulary"
     var body: some View {
         ZStack(alignment: .top) {
-            switch viewModel.onboardingStatus {
+            switch viewModel.onboardingState {
             case .words:
                 Image(uiImage: .onboardingWords)
                     .resizable()

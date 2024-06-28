@@ -10,14 +10,14 @@ import SwiftUI
 final class OnboardingViewModel: ObservableObject {
 
     @AppStorage("isFirstEntry") var isFirstEntry: Bool = true
-    @Published var onboardingStatus: OnboardingState = .words
+    @Published var onboardingState: OnboardingState = .words
 
     func switchState() {
-        switch onboardingStatus {
+        switch onboardingState {
         case .words:
-            onboardingStatus = .comments
+            onboardingState = .comments
         case .comments:
-            onboardingStatus = .rating
+            onboardingState = .rating
         case .rating:
             isFirstEntry = false
         }
