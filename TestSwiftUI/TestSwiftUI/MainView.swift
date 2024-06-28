@@ -15,7 +15,7 @@ struct MainView: View {
         if isFirstEntry {
             OnboardingView()
         } else {
-            VocabularyView().environmentObject(mainViewModel)
+            HomeView()
         }
     }
 }

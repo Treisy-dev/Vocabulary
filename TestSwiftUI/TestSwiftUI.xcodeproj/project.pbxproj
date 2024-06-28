@@ -32,6 +32,8 @@
 		C37BA0D92C2EF9D800E9925C /* TutorialDescriptionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BA0D82C2EF9D800E9925C /* TutorialDescriptionComponent.swift */; };
 		C37BA0DB2C2EF9F200E9925C /* SwipeIndicatorComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BA0DA2C2EF9F200E9925C /* SwipeIndicatorComponent.swift */; };
 		C37BA0DE2C2EFA1300E9925C /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BA0DD2C2EFA1300E9925C /* TutorialViewModel.swift */; };
+		C37BA0E72C2EFD6200E9925C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BA0E62C2EFD6200E9925C /* HomeView.swift */; };
+		C37BA0EB2C2EFD9300E9925C /* HomeFolderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BA0EA2C2EFD9300E9925C /* HomeFolderComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		C37BA0D82C2EF9D800E9925C /* TutorialDescriptionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialDescriptionComponent.swift; sourceTree = "<group>"; };
 		C37BA0DA2C2EF9F200E9925C /* SwipeIndicatorComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeIndicatorComponent.swift; sourceTree = "<group>"; };
 		C37BA0DD2C2EFA1300E9925C /* TutorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModel.swift; sourceTree = "<group>"; };
+		C37BA0E62C2EFD6200E9925C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C37BA0EA2C2EFD9300E9925C /* HomeFolderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFolderComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 				C37BA0D62C2EF9B500E9925C /* CustomNavigationBarComponent.swift */,
 				C37BA0D82C2EF9D800E9925C /* TutorialDescriptionComponent.swift */,
 				C37BA0DA2C2EF9F200E9925C /* SwipeIndicatorComponent.swift */,
+				C37BA0EA2C2EFD9300E9925C /* HomeFolderComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 		C37BA06E2C2D857C00E9925C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C37BA0E42C2EFD5400E9925C /* View */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -274,6 +280,14 @@
 				C37BA0DD2C2EFA1300E9925C /* TutorialViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C37BA0E42C2EFD5400E9925C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C37BA0E62C2EFD6200E9925C /* HomeView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,7 +381,9 @@
 				2A7B72EB2C24D0AB0088808A /* HintComponent.swift in Sources */,
 				C37BA0DB2C2EF9F200E9925C /* SwipeIndicatorComponent.swift in Sources */,
 				C37BA0742C2D85F600E9925C /* VocabularyView.swift in Sources */,
+				C37BA0EB2C2EFD9300E9925C /* HomeFolderComponent.swift in Sources */,
 				C37BA0CB2C2DD93B00E9925C /* OnboardingView.swift in Sources */,
+				C37BA0E72C2EFD6200E9925C /* HomeView.swift in Sources */,
 				2A7B72E72C24D0790088808A /* SavedAlertComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
