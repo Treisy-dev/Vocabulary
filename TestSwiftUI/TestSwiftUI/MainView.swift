@@ -12,7 +12,7 @@ struct MainView: View {
 
     var body: some View {
         NavigationStack {
-            if !isFirstEntry {
+            if isFirstEntry {
                 OnboardingView()
             } else {
                 HomeView()
