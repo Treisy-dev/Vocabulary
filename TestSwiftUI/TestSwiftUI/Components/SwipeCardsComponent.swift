@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SwipeCardsComponent: View {
     @State private var currentIndex: Int = 0
-    @EnvironmentObject var viewModel: MainViewModel
+    @State var cards: [Card]
     @GestureState private var dragState = DragState.inactive
     @State private var removalTransition = AnyTransition.move(edge: .trailing)
     @State var isShareTapped: Bool = false
@@ -48,7 +48,7 @@ struct SwipeCardsComponent: View {
                     .frame(width: 56, height: 56)
                     .clipShape(Circle())
                     .sheet(isPresented: $isShareTapped, content: {
-                        ShareSheet(items: [UIImage(named: viewModel.cards[currentIndex].imageName) ?? .img, "\(viewModel.cards[currentIndex].title) - \(viewModel.cards[currentIndex].transcrtiption)", ])
+                        ShareSheet(items: [UIImage(named: cards[currentIndex].imageName) ?? .img, "\(cards[currentIndex].title) - \(cards[currentIndex].transcrtiption)", ])
                             .onDisappear {
                                 footerManager.isWordShared = true
                             }
@@ -56,8 +56,9 @@ struct SwipeCardsComponent: View {
                 }
                 .zIndex(0.6)
                 .padding(.horizontal)
-                if viewModel.cards.indices.contains(currentIndex) {
-                    CardComponent(cardData: viewModel.cards[currentIndex])
+
+                if cards.indices.contains(currentIndex) {
+                    CardComponent(cardData: cards[currentIndex])
                         .zIndex(0.5)
                         .offset(x: self.dragState.translation.width, y: 0)
                         .animation(.interpolatingSpring(stiffness: 180, damping: 100), value: dragState.translation.width)
@@ -66,14 +67,16 @@ struct SwipeCardsComponent: View {
                         .environmentObject(footerManager)
                 }
             }
+
             FooterButtonsComponent(
-                image: UIImage(named: viewModel.cards[currentIndex].imageName) ?? .img,
-                audioName: viewModel.cards[currentIndex].soundName,
-                wordId: viewModel.cards[currentIndex].id
+                image: UIImage(named: cards[currentIndex].imageName) ?? .img,
+                audioName: cards[currentIndex].soundName,
+                wordId: cards[currentIndex].id
             )
             .frame(height: 64)
             .environmentObject(footerManager)
         }
+        .toolbar(.hidden)
         .overlay(alignment: .top, content: { alertOverlay })
     }
 
@@ -92,7 +95,7 @@ struct SwipeCardsComponent: View {
             }
 
             if footerManager.isWordSavedFavorite {
-                if footerManager.checkFavorites(id: viewModel.cards[currentIndex].id) {
+                if footerManager.checkFavorites(id: cards[currentIndex].id) {
                     SavedAlertComponent(titleText: "The word is saved to My Vocabulary", description: "You can find your words in My Vocabulary")
                         .zIndex(0.6)
                         .padding(.horizontal, 10)
@@ -118,10 +121,12 @@ struct SwipeCardsComponent: View {
     private func dragGesture() -> some Gesture {
         DragGesture()
             .updating($dragState) { value, state, _ in
-                state = .dragging(translation: value.translation)
+                if cards.count > 1 {
+                    state = .dragging(translation: value.translation)
+                }
             }
             .onEnded { value in
-                if abs(value.translation.width) > self.dragThreshold {
+                if cards.count > 1 && abs(value.translation.width) > self.dragThreshold {
                     let direction: Direction = value.translation.width > 0 ? .left : .right
                     self.changeCard(direction: direction)
                 }
@@ -129,10 +134,15 @@ struct SwipeCardsComponent: View {
     }
 
     private func changeCard(direction: Direction) {
+        if cards.count <= 1 {
+            return
+        }
+
         footerManager.dropStates()
+
         if direction == .right {
             let nextIndex = currentIndex + 1
-            if nextIndex < viewModel.cards.count {
+            if nextIndex < cards.count {
                 currentIndex = nextIndex
                 removalTransition = .move(edge: .leading)
             } else {
@@ -177,6 +187,6 @@ enum Direction {
 }
 
 #Preview {
-    SwipeCardsComponent()
-        .environmentObject(MainViewModel())
+    let mainVM = MainViewModel()
+    return SwipeCardsComponent(cards: mainVM.cards)
 }

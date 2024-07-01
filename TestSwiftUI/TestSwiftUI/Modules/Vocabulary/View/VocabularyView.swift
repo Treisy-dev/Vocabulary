@@ -13,7 +13,7 @@ struct VocabularyView: View {
     var body: some View {
         ZStack {
             VStack {
-                SwipeCardsComponent().environmentObject(mainViewModel)
+                SwipeCardsComponent(cards: mainViewModel.cards)
             }
             .blur(radius: isFirstOpen ? 5 : 0)
             if isFirstOpen {

@@ -19,7 +19,7 @@ struct HomeView: View {
             HomeFolderComponent(title: "Vocabulary", color: Color.greenAlert, destinationView: VocabularyView().environmentObject(mainViewModel))
                 .padding()
 
-            HomeFolderComponent(title: "My Vocabulary", color: Color.appYellow, destinationView: EmptyView())
+            HomeFolderComponent(title: "My Vocabulary", color: Color.appYellow, destinationView: UserVocabularyView().environmentObject(mainViewModel))
             Spacer()
 
             HStack {
