@@ -27,7 +27,7 @@ struct WordsEndComponent: View {
             })
             .background {
                 RoundedRectangle(cornerRadius: 20, style: .circular)
-                    .fill(Color.deepButton)
+                    .fill(Color.elements)
             }
         }
         .padding()

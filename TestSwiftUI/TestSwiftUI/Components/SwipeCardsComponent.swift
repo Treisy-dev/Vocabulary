@@ -14,6 +14,7 @@ struct SwipeCardsComponent: View {
     @State private var removalTransition = AnyTransition.move(edge: .trailing)
     @State var isShareTapped: Bool = false
     @StateObject var footerManager: FooterManager = FooterManager()
+    @Environment(\.dismiss) var dismiss
 
     private let dragThreshold: CGFloat = 80.0
 
@@ -22,7 +23,7 @@ struct SwipeCardsComponent: View {
             ZStack(alignment: .top) {
                 HStack {
                     Button(action: {
-
+                        dismiss()
                     }) {
                         Image(uiImage: .closeIcone)
                             .resizable()

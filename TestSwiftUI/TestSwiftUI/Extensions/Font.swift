@@ -13,4 +13,8 @@ extension Font {
         return Font.custom("CharisSILR", size: 24)
     }
 
+    static var CharisSILR30: Font {
+        return Font.custom("CharisSILR", size: 30)
+    }
+
 }

@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct MainView: View {
+    @AppStorage("isFirstEntry") var isFirstEntry: Bool = true
 
     var body: some View {
-        Text("Hello Word")
+        NavigationStack {
+            if isFirstEntry {
+                OnboardingView()
+            } else {
+                HomeView()
+            }
+        }
     }
 }
 

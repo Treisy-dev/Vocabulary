@@ -28,7 +28,7 @@ struct HintComponent: View {
             })
             .background {
                 RoundedRectangle(cornerRadius: 20, style: .circular)
-                    .fill(Color.deepButton)
+                    .fill(Color.elements)
             }
         }
         .frame(minWidth: 300, maxWidth: 343, minHeight: 300, maxHeight: 358)

@@ -20,9 +20,14 @@ struct VocabularyView: View {
                 HintComponent()
             }
         }
+        .background {
+            Color.appLight
+                .ignoresSafeArea()
+        }
+        .toolbar(.hidden)
     }
 }
 
 #Preview {
-    VocabularyView()
+    VocabularyView().environmentObject(MainViewModel())
 }
