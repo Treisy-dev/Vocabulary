@@ -9,13 +9,14 @@ import SwiftUI
 
 struct MainView: View {
     @AppStorage("isFirstEntry") var isFirstEntry: Bool = true
-    @StateObject var mainViewModel: MainViewModel = MainViewModel()
 
     var body: some View {
-        if isFirstEntry {
-            OnboardingView()
-        } else {
-            HomeView()
+        NavigationStack {
+            if !isFirstEntry {
+                OnboardingView()
+            } else {
+                HomeView()
+            }
         }
     }
 }

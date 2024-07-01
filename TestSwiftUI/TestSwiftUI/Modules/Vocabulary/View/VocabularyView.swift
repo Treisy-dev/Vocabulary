@@ -20,6 +20,11 @@ struct VocabularyView: View {
                 HintComponent()
             }
         }
+        .background {
+            Color.appLight
+                .ignoresSafeArea()
+        }
+        .toolbar(.hidden)
     }
 }
 

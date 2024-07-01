@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TutorialDescriptionComponent: View {
-    @State var titleText: String
+    @Binding var titleText: String
 
     var body: some View {
         ZStack {
@@ -25,5 +25,6 @@ struct TutorialDescriptionComponent: View {
 
 
 #Preview {
-    TutorialDescriptionComponent(titleText: "Add words you don't know and want to memorize to My Vocabulary. So you can access them quickly")
+    @State var title = "Add words you don't know and want to memorize to My Vocabulary. So you can access them quickly"
+    return TutorialDescriptionComponent(titleText: $title)
 }

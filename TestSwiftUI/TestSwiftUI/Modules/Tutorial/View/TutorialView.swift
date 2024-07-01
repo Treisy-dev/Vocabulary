@@ -9,48 +9,56 @@ import SwiftUI
 
 struct TutorialView: View {
     @StateObject var viewModel = TutorialViewModel()
+    @Environment(\.dismiss) var dismiss
     @State var titleText: String = "To effectively learn new words, we suggest practicing daily"
-    @State private var currentCard = 0
-
     var body: some View {
         VStack(spacing: 20) {
             CustomNavigationBarComponent(title: "Tutorial")
-            TutorialDescriptionComponent(titleText: titleText)
+            TutorialDescriptionComponent(titleText: $titleText)
 
-            switch viewModel.tutorialState {
-            case .myVocabulary:
-                Image(uiImage: .tutorialMyVocabulary)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 375, maxHeight: 344)
-            case .settings:
-                Image(uiImage: .tutorialSettings)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 375, maxHeight: 344)
-                    .onAppear {
-                        titleText = "Turn on notifications so you don't miss new words"
-                    }
-            case .favourites:
-                Image(uiImage: .tutorialFavourites)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 375, maxHeight: 344)
-                    .onAppear {
-                        titleText = "Add words you don't know and want to memorize to My Vocabulary. So you can access them quickly"
-                    }
+            ZStack {
+                switch viewModel.tutorialState {
+                case .myVocabulary:
+                    Image(uiImage: .tutorialMyVocabulary)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 375, maxHeight: 344)
+                        .transition(.opacity)
+                        .onAppear {
+                            titleText = "To effectively learn new words, we suggest practicing daily"
+                        }
+
+                case .settings:
+                    Image(uiImage: .tutorialSettings)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 375, maxHeight: 344)
+                        .transition(.opacity)
+                        .onAppear {
+                            titleText = "Turn on notifications so you don't miss new words"
+                        }
+
+                case .favourites:
+                    Image(uiImage: .tutorialFavourites)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 375, maxHeight: 344)
+                        .transition(.opacity)
+                        .onAppear {
+                            titleText = "Add words you don't know and want to memorize to My Vocabulary. So you can access them quickly"
+                        }
+                }
             }
+            .animation(.easeInOut(duration: 0.3), value: viewModel.tutorialState)
 
-            SwipeIndicatorComponent(totalPoints: 3, currentPoint: $currentCard)
-                .animation(.easeInOut(duration: 0.3), value: currentCard)
+            SwipeIndicatorComponent(totalPoints: 3, currentPoint: $viewModel.currentIndex)
+                .animation(.easeInOut(duration: 0.3), value: viewModel.currentIndex)
 
             Spacer()
 
             Button(action: {
                 viewModel.switchState()
-                withAnimation {
-                    currentCard = (currentCard + 1) % 3
-                }
+                handleCompletion()
             }, label: {
                 Text("Next")
                     .foregroundStyle(Color.elements)
@@ -62,9 +70,27 @@ struct TutorialView: View {
             }
             .padding(.bottom, 16)
         }
+        .gesture(
+            DragGesture()
+                .onEnded { value in
+                    if value.translation.width > 0 {
+                        viewModel.previousState()
+                    } else {
+                        viewModel.switchState()
+                        handleCompletion()
+                    }
+                }
+        )
         .background {
             Color.appLight
                 .ignoresSafeArea()
+        }
+        .toolbar(.hidden)
+    }
+
+    private func handleCompletion() {
+        if viewModel.isTutorialFinished {
+            dismiss()
         }
     }
 }

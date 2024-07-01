@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-struct HomeFolderComponent: View {
+struct HomeFolderComponent<Destination: View>: View {
     var title: String
     var color: Color
+    var destinationView: Destination
+
     var body: some View {
         Image(uiImage: .homeFolder)
             .renderingMode(.template)
@@ -19,13 +21,11 @@ struct HomeFolderComponent: View {
                     Text(title)
                         .font(.CharisSILR)
                         .padding()
-                    Button(action: {
-                        print("Vocabulary")
-                    }, label: {
+                    NavigationLink(destination: destinationView) {
                         Text("Learn")
                             .foregroundStyle(Color.white)
                             .frame(minWidth: 200, maxWidth: 215, minHeight: 35, maxHeight: 40)
-                    })
+                    }
                     .background {
                         RoundedRectangle(cornerRadius: 20, style: .circular)
                             .fill(Color.elements)
@@ -36,5 +36,5 @@ struct HomeFolderComponent: View {
 }
 
 #Preview {
-    HomeFolderComponent(title: "Vocabulary", color: Color.appYellow)
+    HomeFolderComponent(title: "Vocabulary", color: Color.appYellow, destinationView: EmptyView())
 }

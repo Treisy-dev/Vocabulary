@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var mainViewModel: MainViewModel = MainViewModel()
     var body: some View {
         VStack {
             Text("Vocabulary")
@@ -15,10 +16,10 @@ struct HomeView: View {
                 .padding()
 
             Spacer()
-            HomeFolderComponent(title: "Vocabulary", color: Color.greenAlert)
+            HomeFolderComponent(title: "Vocabulary", color: Color.greenAlert, destinationView: VocabularyView().environmentObject(mainViewModel))
                 .padding()
 
-            HomeFolderComponent(title: "My Vocabulary", color: Color.appYellow)
+            HomeFolderComponent(title: "My Vocabulary", color: Color.appYellow, destinationView: EmptyView())
             Spacer()
 
             HStack {
@@ -32,15 +33,12 @@ struct HomeView: View {
                 .clipShape(Circle())
 
                 Spacer()
-                Button(action: {
-                   print("123")
-                }, label: {
+                NavigationLink(destination: TutorialView()) {
                     Image(uiImage: .tutorialIcon)
                         .frame(width: 56, height: 56)
                         .background(Color.button.opacity(0.2))
-                })
-                .clipShape(Circle())
-
+                        .clipShape(Circle())
+                }
             }
             .padding()
 

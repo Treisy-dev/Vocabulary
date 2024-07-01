@@ -9,13 +9,13 @@ import SwiftUI
 
 struct CustomNavigationBarComponent: View {
     var title: String
-//    @Environment(\.presentationMode) var presentationMode
-//
+    @Environment(\.dismiss) var dismiss
+
     var body: some View {
         ZStack {
             HStack {
                 Button(action: {
-//                    presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }) {
                     Image(uiImage: .exitArrowIcon)
                 }
