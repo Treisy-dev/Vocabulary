@@ -57,8 +57,7 @@ struct TutorialView: View {
             Spacer()
 
             Button(action: {
-                viewModel.switchState()
-                handleCompletion()
+                viewModel.nextState()
             }, label: {
                 Text("Next")
                     .foregroundStyle(Color.elements)
@@ -76,8 +75,7 @@ struct TutorialView: View {
                     if value.translation.width > 0 {
                         viewModel.previousState()
                     } else {
-                        viewModel.switchState()
-                        handleCompletion()
+                        viewModel.nextState()
                     }
                 }
         )
@@ -86,11 +84,10 @@ struct TutorialView: View {
                 .ignoresSafeArea()
         }
         .toolbar(.hidden)
-    }
-
-    private func handleCompletion() {
-        if viewModel.isTutorialFinished {
-            dismiss()
+        .onChange(of: viewModel.isTutorialFinished) { isFinished in
+            if isFinished {
+                dismiss()
+            }
         }
     }
 }
