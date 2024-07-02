@@ -6,31 +6,17 @@
 //
 
 import SwiftUI
+
 final class TutorialViewModel: ObservableObject {
-    @Published var tutorialState: TutorialState = .myVocabulary
-    @Published var currentIndex: Int = 0 {
-        didSet {
-            updateTutorialState()
-        }
+    private let states = TutorialState.allCases
+    var tutorialState: TutorialState {
+        states[currentIndex]
     }
+    @Published var currentIndex: Int = 0
     @Published var isTutorialFinished: Bool = false
 
-    private func updateTutorialState() {
-        switch currentIndex {
-        case 0:
-            tutorialState = .myVocabulary
-        case 1:
-            tutorialState = .settings
-        case 2:
-            tutorialState = .favourites
-        default:
-            isTutorialFinished = true
-            currentIndex = 2
-        }
-    }
-
-    func switchState() {
-        if currentIndex < 2 {
+    func nextState() {
+        if currentIndex < states.count - 1 {
             currentIndex += 1
         } else {
             isTutorialFinished = true
@@ -44,6 +30,6 @@ final class TutorialViewModel: ObservableObject {
     }
 }
 
-enum TutorialState {
+enum TutorialState: CaseIterable {
     case myVocabulary, settings, favourites
 }
