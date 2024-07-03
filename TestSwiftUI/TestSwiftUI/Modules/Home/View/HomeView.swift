@@ -23,14 +23,12 @@ struct HomeView: View {
             Spacer()
 
             HStack {
-                Button(action: {
-                   print("123")
-                }, label: {
+                NavigationLink(destination: SettingsView()) {
                     Image(uiImage: .settingsIcon)
                         .frame(width: 56, height: 56)
                         .background(Color.button.opacity(0.2))
-                })
-                .clipShape(Circle())
+                        .clipShape(Circle())
+                }
 
                 Spacer()
                 NavigationLink(destination: TutorialView()) {
