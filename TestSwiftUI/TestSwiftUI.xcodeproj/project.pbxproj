@@ -14,6 +14,7 @@
 		C349E83C2C33357A00E2C788 /* UserVocabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E83B2C33357A00E2C788 /* UserVocabularyView.swift */; };
 		C349E83F2C3335C200E2C788 /* UserVocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E83E2C3335C200E2C788 /* UserVocabularyViewModel.swift */; };
 		C349E8412C33383A00E2C788 /* UserVocabularyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8402C33383A00E2C788 /* UserVocabularyCell.swift */; };
+		C349E8772C3549CD00E2C788 /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8762C3549CD00E2C788 /* AppStorage.swift */; };
 		C357BE732C24ACB30099AB1F /* TestSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BE722C24ACB30099AB1F /* TestSwiftUIApp.swift */; };
 		C357BE752C24ACB30099AB1F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BE742C24ACB30099AB1F /* MainView.swift */; };
 		C357BE772C24ACB40099AB1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C357BE762C24ACB40099AB1F /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		C349E83B2C33357A00E2C788 /* UserVocabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVocabularyView.swift; sourceTree = "<group>"; };
 		C349E83E2C3335C200E2C788 /* UserVocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVocabularyViewModel.swift; sourceTree = "<group>"; };
 		C349E8402C33383A00E2C788 /* UserVocabularyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVocabularyCell.swift; sourceTree = "<group>"; };
+		C349E8762C3549CD00E2C788 /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
 		C357BE6F2C24ACB30099AB1F /* TestSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C357BE722C24ACB30099AB1F /* TestSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSwiftUIApp.swift; sourceTree = "<group>"; };
 		C357BE742C24ACB30099AB1F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				2A7B72EC2C24D0C40088808A /* Font.swift */,
+				C349E8762C3549CD00E2C788 /* AppStorage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				C357BEA02C25BD540099AB1F /* CardAttribute.swift in Sources */,
 				C37BA0D72C2EF9B500E9925C /* CustomNavigationBarComponent.swift in Sources */,
 				C37BA0C52C2DD8C700E9925C /* OnboardingFooter.swift in Sources */,
+				C349E8772C3549CD00E2C788 /* AppStorage.swift in Sources */,
 				C357BEA42C25C0CF0099AB1F /* MainViewModel.swift in Sources */,
 				C357BE732C24ACB30099AB1F /* TestSwiftUIApp.swift in Sources */,
 				C357BEA22C25BD950099AB1F /* CardComponent.swift in Sources */,

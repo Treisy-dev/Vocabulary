@@ -10,7 +10,7 @@ import SwiftUI
 import AVFoundation
 
 final class FooterManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
-    @AppStorage("favorites") var favorites: Data = Data()
+    @AppStorage("favorites") var favorites: [String] = []
     @Published var isPlaying: Bool = false
     @Published var isPhotoSaved: Bool = false
     @Published var isWordShared: Bool = false
@@ -55,33 +55,17 @@ final class FooterManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         audioPlayer.stop()
     }
 
-    var storedArray: [String] {
-        get {
-            guard let decodedArray = try? JSONDecoder().decode([String].self, from: favorites) else {
-                return []
-            }
-            return decodedArray
-        }
-        set {
-            favorites = (try? JSONEncoder().encode(newValue)) ?? Data()
-        }
-    }
-
     func checkFavorites(id: String) -> Bool {
-        return storedArray.contains(where: {$0 == id})
+        return favorites.contains(where: {$0 == id})
     }
 
     func saveToFavorites(id: String) {
-        var newArray = storedArray
-        newArray.append(id)
-        storedArray = newArray
+        favorites.append(id)
         isWordSavedFavorite = true
     }
 
     func removeFromFavorites(id: String) {
-        var newArray = storedArray
-        newArray.removeAll(where: {$0 == id})
-        storedArray = newArray
+        favorites.removeAll(where: {$0 == id})
         isWordSavedFavorite = true
     }
 
