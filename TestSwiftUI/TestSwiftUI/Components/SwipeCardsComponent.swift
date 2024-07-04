@@ -162,7 +162,7 @@ struct SwipeCardsComponent: View {
                 removalTransition = .move(edge: .trailing)
             }
         }
-        isRatingShow = (currentIndex + 1) % 3 == 0
+        isRatingShow = (currentIndex + 1) % 4 == 0
     }
 
     //Функция открывает AppStore, но без id это сделать невозможно
