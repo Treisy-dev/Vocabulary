@@ -13,11 +13,11 @@ struct SettingsView: View {
     @State private var showingAlert = false
     @State private var notificationTime = Date()
     private var pushNotificationManager: PushNotificationManager = PushNotificationManager()
-    
+
     var alert: Alert {
         Alert(
             title: Text("No access to push notifications"),
-            message: Text("Please allow access to to notifications so you could new words every day"),
+            message: Text("Please allow access to notifications so you receive new words every day"),
             primaryButton: .default(Text("Go to Settings")) {
                 openAppSettings()
             },
@@ -35,22 +35,33 @@ struct SettingsView: View {
             SettingsCellComponent(title: "Notifications",
                                   content: Toggle("", isOn: $isNotificationsEnabled)
                 .onChange(of: isNotificationsEnabled) { newValue in
-                    pushNotificationManager.checkNotificationAuthorization { isEnabled in
-                        if !isEnabled {
-                            showingAlert = true
-                            isNotificationsEnabled = false
+                    if newValue {
+                        pushNotificationManager.requestNotificationAuthorization { granted in
+                            if !granted {
+                                showingAlert = true
+                                isNotificationsEnabled = false
+                            }
+                        }
+                    } else {
+                        pushNotificationManager.checkNotificationAuthorization { isEnabled in
+                            if !isEnabled {
+                                showingAlert = true
+                                isNotificationsEnabled = false
+                            } else {
+                                isNotificationsEnabled = false
+                            }
                         }
                     }
                 })
 
             if isNotificationsEnabled {
                 SettingsCellComponent(title: "Set notifications time", content:
-                                        Button(action: {
-                    showTimePicker.toggle()
-                }) {
-                    Text(timeString(from: notificationTime))
-                        .foregroundStyle(Color.text)
-                }
+                    Button(action: {
+                        showTimePicker.toggle()
+                    }) {
+                        Text(timeString(from: notificationTime))
+                            .foregroundStyle(Color.text)
+                    }
                     .padding(6)
                     .font(.system(size: 17))
                     .background {

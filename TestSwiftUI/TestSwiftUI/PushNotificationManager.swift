@@ -16,16 +16,19 @@ class PushNotificationManager: NSObject {
         notificationCenter.delegate = self
     }
 
-    func requestNotificationAuthorization() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+    func requestNotificationAuthorization(completion: @escaping (Bool) -> Void) {
+        notificationCenter.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if let error = error {
-                print("Ошибка при запросе разрешения на уведомления: \(error)")
+                print("Error requesting notification authorization: \(error)")
+            }
+            DispatchQueue.main.async {
+                completion(granted)
             }
         }
     }
 
     func checkNotificationAuthorization(completion: @escaping (Bool) -> Void) {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
+        notificationCenter.getNotificationSettings { settings in
             DispatchQueue.main.async {
                 completion(settings.authorizationStatus == .authorized)
             }
@@ -41,7 +44,7 @@ class PushNotificationManager: NSObject {
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request) { error in
+        notificationCenter.add(request) { error in
             if let error = error {
                 print("Ошибка при добавлении уведомления: \(error)")
             }
@@ -49,9 +52,8 @@ class PushNotificationManager: NSObject {
     }
 
     func clearAllNotifications() {
-        let center = UNUserNotificationCenter.current()
-        center.removeAllPendingNotificationRequests()
-        center.removeAllDeliveredNotifications()
+        notificationCenter.removeAllPendingNotificationRequests()
+        notificationCenter.removeAllDeliveredNotifications()
         print("All notifications have been cleared.")
     }
 }
@@ -63,9 +65,4 @@ extension PushNotificationManager: UNUserNotificationCenterDelegate {
     ) async -> UNNotificationPresentationOptions {
         return [.banner, .sound]
     }
-
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
-//
-//    }
 }
-

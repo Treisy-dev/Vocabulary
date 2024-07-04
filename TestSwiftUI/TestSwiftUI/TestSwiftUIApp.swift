@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct TestSwiftUIApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             MainView()
