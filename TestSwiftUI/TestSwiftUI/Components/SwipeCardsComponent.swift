@@ -165,10 +165,8 @@ struct SwipeCardsComponent: View {
         isRatingShow = (currentIndex + 1) % 4 == 0
     }
 
-    //Функция открывает AppStore, но без id это сделать невозможно
     private func openAppStore() {
-        let appID = "YOUR_APP_ID" // Замените на реальный идентификатор вашего приложения
-        let appStoreUrl = "https://apps.apple.com/app/id\(appID)"
+        let appStoreUrl = "https://apps.apple.com/app/id\(ConfigData.appId)"
 
         if let url = URL(string: appStoreUrl) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
