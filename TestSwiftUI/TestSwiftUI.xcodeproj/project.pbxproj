@@ -18,6 +18,7 @@
 		C349E87F2C35D72500E2C788 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E87E2C35D72500E2C788 /* SettingsView.swift */; };
 		C349E8812C35D74400E2C788 /* SettingsCellComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8802C35D74400E2C788 /* SettingsCellComponent.swift */; };
 		C349E8832C35D7B600E2C788 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8822C35D7B600E2C788 /* PushNotificationManager.swift */; };
+		C349E8872C36B85500E2C788 /* ConfigData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8862C36B85500E2C788 /* ConfigData.swift */; };
 		C357BE732C24ACB30099AB1F /* TestSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BE722C24ACB30099AB1F /* TestSwiftUIApp.swift */; };
 		C357BE752C24ACB30099AB1F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BE742C24ACB30099AB1F /* MainView.swift */; };
 		C357BE772C24ACB40099AB1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C357BE762C24ACB40099AB1F /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		C349E87E2C35D72500E2C788 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C349E8802C35D74400E2C788 /* SettingsCellComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellComponent.swift; sourceTree = "<group>"; };
 		C349E8822C35D7B600E2C788 /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
+		C349E8862C36B85500E2C788 /* ConfigData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigData.swift; sourceTree = "<group>"; };
 		C357BE6F2C24ACB30099AB1F /* TestSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C357BE722C24ACB30099AB1F /* TestSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSwiftUIApp.swift; sourceTree = "<group>"; };
 		C357BE742C24ACB30099AB1F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -164,6 +166,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C349E8882C36B86600E2C788 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C349E8822C35D7B600E2C788 /* PushNotificationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		C357BE662C24ACB30099AB1F = {
 			isa = PBXGroup;
 			children = (
@@ -186,11 +196,12 @@
 				2A8D1B282C29E5570056A142 /* Info.plist */,
 				2A7B72E52C24CFE20088808A /* Extensions */,
 				2A7B72E42C24CFDD0088808A /* Fonts */,
+				C349E8882C36B86600E2C788 /* Managers */,
 				C37BA06C2C2D855F00E9925C /* Modules */,
 				2A7B72E32C24CFD10088808A /* Components */,
 				C357BE722C24ACB30099AB1F /* TestSwiftUIApp.swift */,
+				C349E8862C36B85500E2C788 /* ConfigData.swift */,
 				C357BEA32C25C0CF0099AB1F /* MainViewModel.swift */,
-				C349E8822C35D7B600E2C788 /* PushNotificationManager.swift */,
 				C357BE742C24ACB30099AB1F /* MainView.swift */,
 				C357BE762C24ACB40099AB1F /* Assets.xcassets */,
 				C357BE782C24ACB40099AB1F /* Preview Content */,
@@ -433,6 +444,7 @@
 				C37BA0DB2C2EF9F200E9925C /* SwipeIndicatorComponent.swift in Sources */,
 				C37BA0742C2D85F600E9925C /* VocabularyView.swift in Sources */,
 				C37BA0EB2C2EFD9300E9925C /* HomeFolderComponent.swift in Sources */,
+				C349E8872C36B85500E2C788 /* ConfigData.swift in Sources */,
 				C37BA0CB2C2DD93B00E9925C /* OnboardingView.swift in Sources */,
 				C349E8832C35D7B600E2C788 /* PushNotificationManager.swift in Sources */,
 				C37BA0E72C2EFD6200E9925C /* HomeView.swift in Sources */,

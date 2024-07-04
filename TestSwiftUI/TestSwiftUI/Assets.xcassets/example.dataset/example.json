@@ -32,6 +32,17 @@
             "soundName": "exampleSound",
             "exampleText": "She fondly remembered the halcyon days of her childhood spent by the seaside.",
             "atributes": ["tranquil", "serene", "blissful"]
+        },
+        {
+            "id": "4",
+            "imageName": "img4",
+            "title": "Pernicious",
+            "type": "adjective",
+            "transcrtiption": "[pəˈnɪʃəs]",
+            "description": "Having a harmful effect, especially in a gradual or subtle way.",
+            "soundName": "exampleSound",
+            "exampleText": "Example text",
+            "atributes": ["tranquil", "serene", "blissful"]
         }
     ]
 }
