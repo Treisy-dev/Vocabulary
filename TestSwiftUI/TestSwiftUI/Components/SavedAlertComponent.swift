@@ -10,6 +10,7 @@ import SwiftUI
 struct SavedAlertComponent: View {
     var titleText: String
     var description: String?
+    @State var timer: Timer?
     @EnvironmentObject var footerManager: FooterManager
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -18,9 +19,7 @@ struct SavedAlertComponent: View {
                     .font(.system(size: description == nil ? 16 : 20))
                 Spacer()
                 Button(action: {
-                    footerManager.isPhotoSaved = false
-                    footerManager.isWordShared = false
-                    footerManager.isWordSavedFavorite = false
+                    closeAlert()
                 }, label: {
                     Image(uiImage: .closeIcone)
                 })
@@ -36,6 +35,18 @@ struct SavedAlertComponent: View {
             RoundedRectangle(cornerRadius: 20, style: .circular)
                 .fill(Color.greenAlert)
         }
+        .onAppear {
+            timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) { _ in
+               closeAlert()
+            }
+        }
+    }
+
+    private func closeAlert() {
+        timer?.invalidate()
+        footerManager.isPhotoSaved = false
+        footerManager.isWordShared = false
+        footerManager.isWordSavedFavorite = false
     }
 }
 

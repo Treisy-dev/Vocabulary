@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct OnboardingView: View {
     @StateObject var viewModel = OnboardingViewModel()
@@ -37,6 +38,7 @@ struct OnboardingView: View {
                     .onAppear {
                         titleText = "Master your words for fluency"
                         descriptionText = "This will help you enhance your ability to memorize the words effectively"
+                        showReviewRequest()
                     }
             }
 
@@ -55,6 +57,12 @@ struct OnboardingView: View {
                 }
         }
         .ignoresSafeArea(.all)
+    }
+
+    func showReviewRequest() {
+        if let window = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            SKStoreReviewController.requestReview(in: window)
+        }
     }
 }
 

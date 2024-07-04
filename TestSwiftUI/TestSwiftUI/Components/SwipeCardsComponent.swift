@@ -15,7 +15,7 @@ struct SwipeCardsComponent: View {
     @State var isShareTapped: Bool = false
     @StateObject var footerManager: FooterManager = FooterManager()
     @Environment(\.dismiss) var dismiss
-
+    @State var isRatingShow: Bool = false
     private let dragThreshold: CGFloat = 80.0
 
     var body: some View {
@@ -78,6 +78,13 @@ struct SwipeCardsComponent: View {
         }
         .toolbar(.hidden)
         .overlay(alignment: .top, content: { alertOverlay })
+        .alert("Please leave a review", isPresented: $isRatingShow) {
+            Button("Go to the AppStore", role: .cancel) {
+                print("appstore")
+            }
+        } message: {
+            Text("Positive feedback gives us serious motivation to improve")
+        }
     }
 
     private var alertOverlay: some View {
@@ -154,6 +161,17 @@ struct SwipeCardsComponent: View {
                 currentIndex = previousIndex
                 removalTransition = .move(edge: .trailing)
             }
+        }
+        isRatingShow = (currentIndex + 1) % 4 == 0
+    }
+
+    private func openAppStore() {
+        let appStoreUrl = "https://apps.apple.com/app/id\(ConfigData.appId)"
+
+        if let url = URL(string: appStoreUrl) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            print("Невозможно создать URL")
         }
     }
 }
