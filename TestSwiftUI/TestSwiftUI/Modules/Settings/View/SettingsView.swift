@@ -101,6 +101,7 @@ struct SettingsView: View {
         .alert(isPresented: $showingAlert, content: {
             alert
         })
+        .toolbar(.hidden)
     }
 }
 
