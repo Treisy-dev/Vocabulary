@@ -574,6 +574,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestSwiftUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Vocabulary;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This will help you save words";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Vocabulary\" Would Like to Add to your Photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -606,6 +607,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestSwiftUI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Vocabulary;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This will help you save words";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Vocabulary\" Would Like to Add to your Photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
