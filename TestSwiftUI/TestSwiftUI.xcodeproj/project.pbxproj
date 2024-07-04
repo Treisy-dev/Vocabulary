@@ -15,6 +15,9 @@
 		C349E83F2C3335C200E2C788 /* UserVocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E83E2C3335C200E2C788 /* UserVocabularyViewModel.swift */; };
 		C349E8412C33383A00E2C788 /* UserVocabularyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8402C33383A00E2C788 /* UserVocabularyCell.swift */; };
 		C349E8772C3549CD00E2C788 /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8762C3549CD00E2C788 /* AppStorage.swift */; };
+		C349E87F2C35D72500E2C788 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E87E2C35D72500E2C788 /* SettingsView.swift */; };
+		C349E8812C35D74400E2C788 /* SettingsCellComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8802C35D74400E2C788 /* SettingsCellComponent.swift */; };
+		C349E8832C35D7B600E2C788 /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8822C35D7B600E2C788 /* PushNotificationManager.swift */; };
 		C357BE732C24ACB30099AB1F /* TestSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BE722C24ACB30099AB1F /* TestSwiftUIApp.swift */; };
 		C357BE752C24ACB30099AB1F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BE742C24ACB30099AB1F /* MainView.swift */; };
 		C357BE772C24ACB40099AB1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C357BE762C24ACB40099AB1F /* Assets.xcassets */; };
@@ -50,6 +53,9 @@
 		C349E83E2C3335C200E2C788 /* UserVocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVocabularyViewModel.swift; sourceTree = "<group>"; };
 		C349E8402C33383A00E2C788 /* UserVocabularyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVocabularyCell.swift; sourceTree = "<group>"; };
 		C349E8762C3549CD00E2C788 /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
+		C349E87E2C35D72500E2C788 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C349E8802C35D74400E2C788 /* SettingsCellComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellComponent.swift; sourceTree = "<group>"; };
+		C349E8822C35D7B600E2C788 /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		C357BE6F2C24ACB30099AB1F /* TestSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C357BE722C24ACB30099AB1F /* TestSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSwiftUIApp.swift; sourceTree = "<group>"; };
 		C357BE742C24ACB30099AB1F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -102,6 +108,7 @@
 				C37BA0D82C2EF9D800E9925C /* TutorialDescriptionComponent.swift */,
 				C37BA0DA2C2EF9F200E9925C /* SwipeIndicatorComponent.swift */,
 				C37BA0EA2C2EFD9300E9925C /* HomeFolderComponent.swift */,
+				C349E8802C35D74400E2C788 /* SettingsCellComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -149,6 +156,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		C349E87D2C35D6FE00E2C788 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C349E87E2C35D72500E2C788 /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C357BE662C24ACB30099AB1F = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +190,7 @@
 				2A7B72E32C24CFD10088808A /* Components */,
 				C357BE722C24ACB30099AB1F /* TestSwiftUIApp.swift */,
 				C357BEA32C25C0CF0099AB1F /* MainViewModel.swift */,
+				C349E8822C35D7B600E2C788 /* PushNotificationManager.swift */,
 				C357BE742C24ACB30099AB1F /* MainView.swift */,
 				C357BE762C24ACB40099AB1F /* Assets.xcassets */,
 				C357BE782C24ACB40099AB1F /* Preview Content */,
@@ -251,6 +267,7 @@
 		C37BA0722C2D85B700E9925C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				C349E87D2C35D6FE00E2C788 /* View */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -397,6 +414,7 @@
 				C37BA0D92C2EF9D800E9925C /* TutorialDescriptionComponent.swift in Sources */,
 				C37BA0C72C2DD90E00E9925C /* OnboardingViewModel.swift in Sources */,
 				C349E8412C33383A00E2C788 /* UserVocabularyCell.swift in Sources */,
+				C349E8812C35D74400E2C788 /* SettingsCellComponent.swift in Sources */,
 				C357BE752C24ACB30099AB1F /* MainView.swift in Sources */,
 				2A7B72ED2C24D0C40088808A /* Font.swift in Sources */,
 				C357BEA82C25C73E0099AB1F /* SwipeCardsComponent.swift in Sources */,
@@ -407,6 +425,7 @@
 				C37BA0D72C2EF9B500E9925C /* CustomNavigationBarComponent.swift in Sources */,
 				C37BA0C52C2DD8C700E9925C /* OnboardingFooter.swift in Sources */,
 				C349E8772C3549CD00E2C788 /* AppStorage.swift in Sources */,
+				C349E87F2C35D72500E2C788 /* SettingsView.swift in Sources */,
 				C357BEA42C25C0CF0099AB1F /* MainViewModel.swift in Sources */,
 				C357BE732C24ACB30099AB1F /* TestSwiftUIApp.swift in Sources */,
 				C357BEA22C25BD950099AB1F /* CardComponent.swift in Sources */,
@@ -415,6 +434,7 @@
 				C37BA0742C2D85F600E9925C /* VocabularyView.swift in Sources */,
 				C37BA0EB2C2EFD9300E9925C /* HomeFolderComponent.swift in Sources */,
 				C37BA0CB2C2DD93B00E9925C /* OnboardingView.swift in Sources */,
+				C349E8832C35D7B600E2C788 /* PushNotificationManager.swift in Sources */,
 				C37BA0E72C2EFD6200E9925C /* HomeView.swift in Sources */,
 				2A7B72E72C24D0790088808A /* SavedAlertComponent.swift in Sources */,
 			);
