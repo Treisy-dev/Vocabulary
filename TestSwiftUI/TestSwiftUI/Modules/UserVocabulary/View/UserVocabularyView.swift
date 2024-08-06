@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserVocabularyView: View {
     @EnvironmentObject var mainViewModel: MainViewModel
+    @Environment(\.managedObjectContext) var moc
     @StateObject var viewModel: UserVocabularyViewModel = UserVocabularyViewModel()
 
     var body: some View {
@@ -48,10 +49,7 @@ struct UserVocabularyView: View {
             Spacer()
         }
         .onAppear {
-            if viewModel.mainViewModel == nil {
-                viewModel.mainViewModel = mainViewModel
-            }
-            viewModel.obtainData()
+            viewModel.obtainData(moc: moc)
         }
         .background{
             Color.appLight

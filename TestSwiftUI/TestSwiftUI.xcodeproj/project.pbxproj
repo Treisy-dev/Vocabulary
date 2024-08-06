@@ -30,6 +30,13 @@
 		C357BEA62C25C1200099AB1F /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEA52C25C1200099AB1F /* CardModel.swift */; };
 		C357BEA82C25C73E0099AB1F /* SwipeCardsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEA72C25C73E0099AB1F /* SwipeCardsComponent.swift */; };
 		C357BEB12C2B2F660099AB1F /* WordsEndComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C357BEB02C2B2F660099AB1F /* WordsEndComponent.swift */; };
+		C3765CF12C62418900121DA9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C3765CF02C62418900121DA9 /* Alamofire */; };
+		C3765CF62C62421900121DA9 /* VocabularyAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3765CF52C62421900121DA9 /* VocabularyAPIModel.swift */; };
+		C3765CF82C62431600121DA9 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3765CF72C62431600121DA9 /* MainModel.swift */; };
+		C3765CFA2C6257CD00121DA9 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3765CF92C6257CD00121DA9 /* Notification.swift */; };
+		C3765CFD2C625D8600121DA9 /* VacabularyCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3765CFB2C625D8600121DA9 /* VacabularyCoreData.xcdatamodeld */; };
+		C3765CFF2C62611900121DA9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3765CFE2C62611900121DA9 /* DataController.swift */; };
+		C3765D012C626D8000121DA9 /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3765D002C626D8000121DA9 /* LaunchScreen.swift */; };
 		C37BA06A2C2D7D7100E9925C /* CharisSILR.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C37BA0692C2D7D7100E9925C /* CharisSILR.ttf */; };
 		C37BA0742C2D85F600E9925C /* VocabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BA0732C2D85F600E9925C /* VocabularyView.swift */; };
 		C37BA0C52C2DD8C700E9925C /* OnboardingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37BA0C42C2DD8C700E9925C /* OnboardingFooter.swift */; };
@@ -70,6 +77,12 @@
 		C357BEA52C25C1200099AB1F /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		C357BEA72C25C73E0099AB1F /* SwipeCardsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsComponent.swift; sourceTree = "<group>"; };
 		C357BEB02C2B2F660099AB1F /* WordsEndComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsEndComponent.swift; sourceTree = "<group>"; };
+		C3765CF52C62421900121DA9 /* VocabularyAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyAPIModel.swift; sourceTree = "<group>"; };
+		C3765CF72C62431600121DA9 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		C3765CF92C6257CD00121DA9 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		C3765CFC2C625D8600121DA9 /* VacabularyCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VacabularyCoreData.xcdatamodel; sourceTree = "<group>"; };
+		C3765CFE2C62611900121DA9 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		C3765D002C626D8000121DA9 /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		C37BA0692C2D7D7100E9925C /* CharisSILR.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CharisSILR.ttf; sourceTree = "<group>"; };
 		C37BA0732C2D85F600E9925C /* VocabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyView.swift; sourceTree = "<group>"; };
 		C37BA0C42C2DD8C700E9925C /* OnboardingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFooter.swift; sourceTree = "<group>"; };
@@ -89,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3765CF12C62418900121DA9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +125,7 @@
 				C37BA0DA2C2EF9F200E9925C /* SwipeIndicatorComponent.swift */,
 				C37BA0EA2C2EFD9300E9925C /* HomeFolderComponent.swift */,
 				C349E8802C35D74400E2C788 /* SettingsCellComponent.swift */,
+				C3765D002C626D8000121DA9 /* LaunchScreen.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -128,6 +143,7 @@
 			children = (
 				2A7B72EC2C24D0C40088808A /* Font.swift */,
 				C349E8762C3549CD00E2C788 /* AppStorage.swift */,
+				C3765CF92C6257CD00121DA9 /* Notification.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -170,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				C349E8822C35D7B600E2C788 /* PushNotificationManager.swift */,
+				C3765CFE2C62611900121DA9 /* DataController.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -177,6 +194,7 @@
 		C357BE662C24ACB30099AB1F = {
 			isa = PBXGroup;
 			children = (
+				C3765CFB2C625D8600121DA9 /* VacabularyCoreData.xcdatamodeld */,
 				C357BE712C24ACB30099AB1F /* TestSwiftUI */,
 				C357BE702C24ACB30099AB1F /* Products */,
 			);
@@ -202,6 +220,7 @@
 				C357BE722C24ACB30099AB1F /* TestSwiftUIApp.swift */,
 				C349E8862C36B85500E2C788 /* ConfigData.swift */,
 				C357BEA32C25C0CF0099AB1F /* MainViewModel.swift */,
+				C3765CF72C62431600121DA9 /* MainModel.swift */,
 				C357BE742C24ACB30099AB1F /* MainView.swift */,
 				C357BE762C24ACB40099AB1F /* Assets.xcassets */,
 				C357BE782C24ACB40099AB1F /* Preview Content */,
@@ -224,6 +243,15 @@
 				2A7B72E82C24D0960088808A /* FooterButtonsComponent.swift */,
 			);
 			path = Footer;
+			sourceTree = "<group>";
+		};
+		C3765CF42C6241FE00121DA9 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				C3765CF52C62421900121DA9 /* VocabularyAPIModel.swift */,
+				C357BEA52C25C1200099AB1F /* CardModel.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		C37BA06C2C2D855F00E9925C /* Modules */ = {
@@ -268,8 +296,7 @@
 		C37BA0702C2D859900E9925C /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
-				C37BA0772C2D861800E9925C /* ViewModel */,
-				C37BA0762C2D860800E9925C /* Model */,
+				C3765CF42C6241FE00121DA9 /* API */,
 				C37BA0752C2D85FF00E9925C /* View */,
 			);
 			path = Vocabulary;
@@ -289,21 +316,6 @@
 				C37BA0732C2D85F600E9925C /* VocabularyView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		C37BA0762C2D860800E9925C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C357BEA52C25C1200099AB1F /* CardModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		C37BA0772C2D861800E9925C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C37BA0C82C2DD91F00E9925C /* ViewModel */ = {
@@ -362,6 +374,9 @@
 			dependencies = (
 			);
 			name = TestSwiftUI;
+			packageProductDependencies = (
+				C3765CF02C62418900121DA9 /* Alamofire */,
+			);
 			productName = TestSwiftUI;
 			productReference = C357BE6F2C24ACB30099AB1F /* TestSwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -390,6 +405,9 @@
 				Base,
 			);
 			mainGroup = C357BE662C24ACB30099AB1F;
+			packageReferences = (
+				C3765CEF2C62418900121DA9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = C357BE702C24ACB30099AB1F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -417,6 +435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3765CFD2C625D8600121DA9 /* VacabularyCoreData.xcdatamodeld in Sources */,
 				C37BA0DE2C2EFA1300E9925C /* TutorialViewModel.swift in Sources */,
 				2A7B72E92C24D0960088808A /* FooterButtonsComponent.swift in Sources */,
 				C357BEA62C25C1200099AB1F /* CardModel.swift in Sources */,
@@ -429,6 +448,7 @@
 				C357BE752C24ACB30099AB1F /* MainView.swift in Sources */,
 				2A7B72ED2C24D0C40088808A /* Font.swift in Sources */,
 				C357BEA82C25C73E0099AB1F /* SwipeCardsComponent.swift in Sources */,
+				C3765CFA2C6257CD00121DA9 /* Notification.swift in Sources */,
 				C357BE9A2C25AD9B0099AB1F /* FooterManager.swift in Sources */,
 				C349E83F2C3335C200E2C788 /* UserVocabularyViewModel.swift in Sources */,
 				C349E83C2C33357A00E2C788 /* UserVocabularyView.swift in Sources */,
@@ -443,9 +463,13 @@
 				2A7B72EB2C24D0AB0088808A /* HintComponent.swift in Sources */,
 				C37BA0DB2C2EF9F200E9925C /* SwipeIndicatorComponent.swift in Sources */,
 				C37BA0742C2D85F600E9925C /* VocabularyView.swift in Sources */,
+				C3765CF62C62421900121DA9 /* VocabularyAPIModel.swift in Sources */,
 				C37BA0EB2C2EFD9300E9925C /* HomeFolderComponent.swift in Sources */,
+				C3765D012C626D8000121DA9 /* LaunchScreen.swift in Sources */,
 				C349E8872C36B85500E2C788 /* ConfigData.swift in Sources */,
 				C37BA0CB2C2DD93B00E9925C /* OnboardingView.swift in Sources */,
+				C3765CF82C62431600121DA9 /* MainModel.swift in Sources */,
+				C3765CFF2C62611900121DA9 /* DataController.swift in Sources */,
 				C349E8832C35D7B600E2C788 /* PushNotificationManager.swift in Sources */,
 				C37BA0E72C2EFD6200E9925C /* HomeView.swift in Sources */,
 				2A7B72E72C24D0790088808A /* SavedAlertComponent.swift in Sources */,
@@ -662,6 +686,39 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C3765CEF2C62418900121DA9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C3765CF02C62418900121DA9 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3765CEF2C62418900121DA9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		C3765CFB2C625D8600121DA9 /* VacabularyCoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C3765CFC2C625D8600121DA9 /* VacabularyCoreData.xcdatamodel */,
+			);
+			currentVersion = C3765CFC2C625D8600121DA9 /* VacabularyCoreData.xcdatamodel */;
+			name = VacabularyCoreData.xcdatamodeld;
+			path = /Users/kirillshelokov/Documents/GitHub/Vocabulary/TestSwiftUI/VacabularyCoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C357BE672C24ACB30099AB1F /* Project object */;
 }

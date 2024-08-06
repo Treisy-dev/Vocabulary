@@ -28,12 +28,12 @@ struct CardComponent: View {
                         .foregroundColor(.text)
                         .font(Font.CharisSILR)
 
-                    Text(cardData.type)
+                    Text(cardData.info?.meanings.first?.partOfSpeech ?? "Untitled")
                         .foregroundColor(.text)
                         .font(.system(size: 12))
                         .italic()
 
-                    Text(cardData.transcrtiption)
+                    Text(cardData.info?.phonetic ?? "Untitled")
                         .foregroundColor(.text)
                         .font(.system(size: 16))
                 }
@@ -45,7 +45,7 @@ struct CardComponent: View {
                 }
                 .padding(.top, -60)
 
-                Text(cardData.description)
+                Text(cardData.info?.meanings.first?.definitions.first?.definition ?? "Untitled")
                     .multilineTextAlignment(.center)
                     .foregroundColor(.text)
                     .font(.system(size: 16))
@@ -59,8 +59,10 @@ struct CardComponent: View {
                     .padding()
 
                 HStack {
-                    ForEach(cardData.atributes, id: \.self) { attribute in
-                        CardAttribute(text: attribute)
+                    if let synonyms = cardData.info?.meanings.first?.synonyms.prefix(3) {
+                        ForEach(synonyms, id: \.self) { attribute in
+                            CardAttribute(text: attribute)
+                        }
                     }
                 }
             }
@@ -71,6 +73,6 @@ struct CardComponent: View {
 }
 
 #Preview {
-    CardComponent(cardData: Card(id: "1", imageName: "img", title: "Sycophant", type: "adjective", transcrtiption: "[ˈsɪkəfənt]", description: "A person who acts obsequiously toward someone important in order to gain advantage.", soundName: "exampleSound", exampleText: "He surrounded himself with sycophants who constantly praised him, regardless of his actions.", atributes: ["abc", "abc", "abc"]))
+    CardComponent(cardData: Card(imageName: "img", title: "title", exampleText: "exampleText", info: WordInformation(phonetic: "dkdkdkd", phonetics: [CardAudio(audio: "")], meanings: [MeaningInformation(partOfSpeech: "partOfSpeech", definitions: [DefinitionModel(definition: "definition")], synonyms: ["synonym1", "synonym2"])])))
         .environmentObject(FooterManager())
 }

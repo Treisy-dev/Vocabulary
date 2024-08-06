@@ -15,6 +15,7 @@ struct SwipeCardsComponent: View {
     @State var isShareTapped: Bool = false
     @StateObject var footerManager: FooterManager = FooterManager()
     @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var moc
     @State var isRatingShow: Bool = false
     private let dragThreshold: CGFloat = 80.0
 
@@ -48,7 +49,7 @@ struct SwipeCardsComponent: View {
                     .frame(width: 56, height: 56)
                     .clipShape(Circle())
                     .sheet(isPresented: $isShareTapped, content: {
-                        ShareSheet(items: [UIImage(named: cards[currentIndex].imageName) ?? .img, "\(cards[currentIndex].title) - \(cards[currentIndex].transcrtiption)", ])
+                        ShareSheet(items: [UIImage(named: cards[currentIndex].imageName) ?? .img, "\(cards[currentIndex].title) - \(cards[currentIndex].info?.phonetic ?? "no transcription")"])
                             .onDisappear {
                                 footerManager.isWordShared = true
                             }
@@ -68,11 +69,7 @@ struct SwipeCardsComponent: View {
                 }
             }
 
-            FooterButtonsComponent(
-                image: UIImage(named: cards[currentIndex].imageName) ?? .img,
-                audioName: cards[currentIndex].soundName,
-                wordId: cards[currentIndex].id
-            )
+            FooterButtonsComponent(card: cards[currentIndex])
             .frame(height: 64)
             .environmentObject(footerManager)
         }
@@ -102,7 +99,7 @@ struct SwipeCardsComponent: View {
             }
 
             if footerManager.isWordSavedFavorite {
-                if footerManager.checkFavorites(id: cards[currentIndex].id) {
+                if footerManager.checkFavorites(moc: moc, title: cards[currentIndex].title) {
                     SavedAlertComponent(titleText: "The word is saved to My Vocabulary", description: "You can find your words in My Vocabulary")
                         .zIndex(0.6)
                         .padding(.horizontal, 10)
@@ -162,6 +159,9 @@ struct SwipeCardsComponent: View {
                 removalTransition = .move(edge: .trailing)
             }
         }
+        if currentIndex == cards.count - 2 {
+            NotificationCenter.default.post(name: .loadNewCards, object: nil, userInfo: nil)
+        }
         isRatingShow = (currentIndex + 1) % 4 == 0
     }
 
@@ -206,5 +206,6 @@ enum Direction {
 
 #Preview {
     let mainVM = MainViewModel()
+    mainVM.cards.append(Card(imageName: "img", title: "title", exampleText: "exampleText", info: WordInformation(phonetic: "dkdkdkd", phonetics: [CardAudio(audio: "")], meanings: [MeaningInformation(partOfSpeech: "partOfSpeech", definitions: [DefinitionModel(definition: "definition")], synonyms: ["synonym1", "synonym2"])])))
     return SwipeCardsComponent(cards: mainVM.cards)
 }

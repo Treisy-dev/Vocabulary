@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23G80" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Cards" representedClassName="Cards" syncable="YES" codeGenerationType="class">
+        <attribute name="audioURL" optional="YES" attributeType="String"/>
+        <attribute name="definition" optional="YES" attributeType="String"/>
+        <attribute name="exampleUsage" optional="YES" attributeType="String"/>
+        <attribute name="imageName" optional="YES" attributeType="String"/>
+        <attribute name="partOfSpeech" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="transcrtiption" optional="YES" attributeType="String"/>
+        <relationship name="synonyms" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Synonyms" inverseName="card" inverseEntity="Synonyms"/>
+    </entity>
+    <entity name="Synonyms" representedClassName="Synonyms" syncable="YES" codeGenerationType="class">
+        <attribute name="synonym" optional="YES" attributeType="String"/>
+        <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cards" inverseName="synonyms" inverseEntity="Cards"/>
+    </entity>
+</model>
