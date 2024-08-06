@@ -6,22 +6,42 @@
 //
 
 import SwiftUI
-
+import CoreData
 final class UserVocabularyViewModel: ObservableObject {
-    @AppStorage("favorites") var favorites: [String] = []
-    var mainViewModel: MainViewModel?
+    @Published var favoriteCards: [Cards] = []
 
-    @Published var favoriteCards: [Card] = []
+    func obtainData(moc: NSManagedObjectContext) {
+        let cardFetchRequest: NSFetchRequest<Cards> = Cards.fetchRequest()
 
-    func obtainData() {
-        guard let mainViewModel = mainViewModel else { return }
-        favoriteCards = mainViewModel.cards.filter { card in
-            favorites.contains(card.id)
+        do {
+            favoriteCards = try moc.fetch(cardFetchRequest)
+        } catch {
+            print("Ошибка получения карточек: \(error.localizedDescription)")
         }
     }
 
-    func removeFromFavorites(id: String) {
-        favorites.removeAll(where: {$0 == id})
-        favoriteCards.removeAll(where: {$0.id == id})
+    func removeFromFavorites(moc: NSManagedObjectContext, title: String) {
+        let cardFetchRequest: NSFetchRequest<Cards> = Cards.fetchRequest()
+        cardFetchRequest.predicate = NSPredicate(format: "title == %@", title as CVarArg)
+
+        do {
+            if let card = try moc.fetch(cardFetchRequest).first {
+                moc.delete(card)
+                try moc.save()
+                obtainData(moc: moc)
+            } else {
+                print("Карточка с названием \(title) не найдена.")
+            }
+        } catch {
+            print("Ошибка удаления карточки: \(error.localizedDescription)")
+        }
+    }
+
+    func getSynonymsArray(synonymsArray: [Synonyms]) -> [String] {
+        var result: [String] = []
+        for synonym in synonymsArray {
+            result.append(synonym.synonym ?? "")
+        }
+        return result
     }
 }

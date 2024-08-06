@@ -8,15 +8,16 @@
 import Foundation
 
 struct Card: Codable {
-    let id: String
+//    let id: String
     let imageName: String
     let title: String
-    let type: String
-    let transcrtiption: String
-    let description: String
-    let soundName: String
+//    let type: String
+//    let transcrtiption: String
+//    let description: String
+//    let soundName: String
     let exampleText: String
-    let atributes: [String]
+//    let atributes: [String]
+    var info: WordInformation?
 }
 
 struct CardWrapper: Codable {

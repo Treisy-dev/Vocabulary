@@ -9,10 +9,18 @@ import SwiftUI
 
 @main
 struct TestSwiftUIApp: App {
+    @StateObject private var dataController = DataController()
+
     var body: some Scene {
         WindowGroup {
-            MainView()
+            if dataController.isLoaded {
+                MainView()
+                    .environment(\.managedObjectContext, dataController.container.viewContext)
+            } else {
+                LaunchScreen()
+            }
         }
     }
+    
 }
 

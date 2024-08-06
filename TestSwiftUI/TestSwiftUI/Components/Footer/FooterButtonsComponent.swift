@@ -19,14 +19,13 @@ struct ShareSheet: UIViewControllerRepresentable {
 }
 
 struct FooterButtonsComponent: View {
-    var image: UIImage
-    var audioName: String
-    var wordId: String
+    var card: Card
+    @Environment(\.managedObjectContext) var moc
     @EnvironmentObject var footerManager: FooterManager
     var body: some View {
         HStack {
             Button(action: {
-                footerManager.saveImageToGallery(image)
+                footerManager.saveImageToGallery(UIImage(named: card.imageName))
             }, label: {
                 Image(uiImage: .downloadIcon)
                     .frame(width: 56, height: 56)
@@ -41,7 +40,9 @@ struct FooterButtonsComponent: View {
                 if footerManager.audioPlayer.isPlaying {
                     footerManager.stopSound()
                 } else {
-                    footerManager.playSound(sound: audioName)
+                    if let url = URL(string: card.info?.phonetics.first?.audio ?? "") {
+                        footerManager.playSound(url: url)
+                    }
                 }
             }, label: {
                 Image(uiImage: footerManager.audioPlayer.isPlaying ? .listenFillIcon : .listenIcon)
@@ -53,13 +54,13 @@ struct FooterButtonsComponent: View {
             Spacer()
 
             Button(action: {
-                if footerManager.checkFavorites(id: wordId) {
-                    footerManager.removeFromFavorites(id: wordId)
+                if footerManager.checkFavorites(moc: moc, title: card.title) {
+                    footerManager.removeFromFavorites(moc: moc, title: card.title)
                 } else {
-                    footerManager.saveToFavorites(id: wordId)
+                    footerManager.saveToFavorites(moc: moc, card: card)
                 }
             }, label: {
-                Image(uiImage: footerManager.checkFavorites(id: wordId) == true ? .saveFavoriteFillIcon : .saveFavoriteIcon)
+                Image(uiImage: footerManager.checkFavorites(moc: moc, title: card.title) == true ? .saveFavoriteFillIcon : .saveFavoriteIcon)
                     .frame(width: 56, height: 56)
                     .background(Color.button.opacity(0.2))
             })
@@ -70,10 +71,6 @@ struct FooterButtonsComponent: View {
 }
 
 #Preview {
-    @State var image: UIImage = UIImage.img
-    @State var wordId: String = "1"
-    @State var audioName: String = "exampleSound"
-
-    return FooterButtonsComponent(image: image, audioName: audioName, wordId: wordId)
+    FooterButtonsComponent(card: Card(imageName: "img", title: "title", exampleText: "exampleText", info: WordInformation(phonetic: "dkdkdkd", phonetics: [CardAudio(audio: "")], meanings: [MeaningInformation(partOfSpeech: "partOfSpeech", definitions: [DefinitionModel(definition: "definition")], synonyms: ["synonym1", "synonym2"])])))
         .environmentObject(FooterManager())
 }
