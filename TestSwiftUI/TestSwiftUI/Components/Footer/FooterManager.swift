@@ -46,9 +46,11 @@ final class FooterManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
     }
 
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+    nonisolated func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
-            isPlaying = false
+            DispatchQueue.main.async { [weak self] in
+                self?.isPlaying = false
+            }
             print("Аудиофайл завершил воспроизведение")
         }
     }

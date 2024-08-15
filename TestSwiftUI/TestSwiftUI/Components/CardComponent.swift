@@ -18,9 +18,9 @@ struct CardComponent: View {
                 if let image = cardImage {
                     Image(uiImage: image)
                         .resizable()
-                        .scaledToFill()
+                        .frame(width: UIApplication.shared.windows.first?.bounds.width, height: 478)
+                        .scaledToFit()
                         .edgesIgnoringSafeArea(.all)
-                        .frame(minHeight: 478)
                 } else {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(Color.appLight)
@@ -60,6 +60,7 @@ struct CardComponent: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.text)
                     .font(.system(size: 16))
+                    .frame(maxWidth: (UIApplication.shared.windows.first?.bounds.width)! - 32)
                     .padding()
 
                 Text(cardData.usageExample)
@@ -67,12 +68,14 @@ struct CardComponent: View {
                     .foregroundColor(.text)
                     .font(.system(size: 16))
                     .italic()
+                    .frame(maxWidth: (UIApplication.shared.windows.first?.bounds.width)! - 32)
                     .padding()
 
                 HStack {
                     ForEach(cardData.synonyms.components(separatedBy: ", "), id: \.self) { attribute in
                         CardAttribute(text: attribute)
                     }
+                    .frame(maxWidth: (UIApplication.shared.windows.first?.bounds.width)! - 32)
                 }
             }
         }

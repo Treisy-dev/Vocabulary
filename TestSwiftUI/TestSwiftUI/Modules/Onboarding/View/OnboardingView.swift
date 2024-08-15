@@ -10,7 +10,7 @@ import StoreKit
 
 struct OnboardingView: View {
     @StateObject var viewModel = OnboardingViewModel()
-    @State var titleText: String = "Remember words effortlessly"
+    @State var titleText: String = "Remember words \neffortlessly"
     @State var descriptionText: String = "Learn new words every day and expand your vocabulary"
     var body: some View {
         ZStack(alignment: .top) {
@@ -27,7 +27,7 @@ struct OnboardingView: View {
                     .frame(maxWidth: 343, maxHeight: 329)
                     .padding(.top, 99)
                     .onAppear {
-                        titleText = "Leave your opinion about the app"
+                        titleText = "Leave your opinion about \nthe app"
                         descriptionText = "Tell us about your experience with the app and help us make it better"
                     }
             case .rating:
@@ -36,7 +36,7 @@ struct OnboardingView: View {
                     .scaledToFit()
                     .padding(.top, 44)
                     .onAppear {
-                        titleText = "Master your words for fluency"
+                        titleText = "Master your words for \nfluency"
                         descriptionText = "This will help you enhance your ability to memorize the words effectively"
                         showReviewRequest()
                     }
@@ -68,6 +68,6 @@ struct OnboardingView: View {
 
 
 #Preview {
-    OnboardingView(titleText: "Remember words effortlessly", descriptionText: "Learn new words every day and expand your vocabulary")
+    OnboardingView(titleText: "Remember words \neffortlessly", descriptionText: "Learn new words every day and expand your vocabulary")
 }
 

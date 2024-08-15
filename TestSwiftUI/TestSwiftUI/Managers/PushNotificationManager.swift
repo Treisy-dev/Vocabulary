@@ -11,7 +11,9 @@ import UserNotifications
 class PushNotificationManager: NSObject {
     private let notificationCenter = UNUserNotificationCenter.current()
 
-    override init() {
+    static let shared: PushNotificationManager = PushNotificationManager()
+
+    private override init() {
         super.init()
         notificationCenter.delegate = self
     }

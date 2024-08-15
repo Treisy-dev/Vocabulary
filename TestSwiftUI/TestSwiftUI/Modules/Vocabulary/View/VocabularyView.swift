@@ -13,12 +13,15 @@ struct VocabularyView: View {
     var body: some View {
         ZStack {
             VStack {
-                SwipeCardsComponent(cards: mainViewModel.cards)
+                SwipeCardsComponent(cards: mainViewModel.cards, isDetailScreen: false)
             }
             .blur(radius: isFirstOpen ? 5 : 0)
             if isFirstOpen {
                 HintComponent()
             }
+        }
+        .onAppear {
+            PushNotificationManager.shared.requestNotificationAuthorization(completion: { granded in })
         }
         .background {
             Color.appLight

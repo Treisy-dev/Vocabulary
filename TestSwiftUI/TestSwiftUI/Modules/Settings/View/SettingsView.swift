@@ -12,7 +12,6 @@ struct SettingsView: View {
     @State private var showTimePicker = false
     @State private var showingAlert = false
     @State private var notificationTime = Date()
-    private var pushNotificationManager: PushNotificationManager = PushNotificationManager()
 
     var alert: Alert {
         Alert(
@@ -36,14 +35,14 @@ struct SettingsView: View {
                                   content: Toggle("", isOn: $isNotificationsEnabled)
                 .onChange(of: isNotificationsEnabled) { newValue in
                     if newValue {
-                        pushNotificationManager.requestNotificationAuthorization { granted in
+                        PushNotificationManager.shared.requestNotificationAuthorization { granted in
                             if !granted {
                                 showingAlert = true
                                 isNotificationsEnabled = false
                             }
                         }
                     } else {
-                        pushNotificationManager.checkNotificationAuthorization { isEnabled in
+                        PushNotificationManager.shared.checkNotificationAuthorization { isEnabled in
                             if !isEnabled {
                                 showingAlert = true
                                 isNotificationsEnabled = false
@@ -74,8 +73,8 @@ struct SettingsView: View {
                             .labelsHidden()
                             .presentationDetents([.height(250)])
                             .onDisappear {
-                                pushNotificationManager.clearAllNotifications()
-                                pushNotificationManager.scheduleNotification(date: notificationTime)
+                                PushNotificationManager.shared.clearAllNotifications()
+                                PushNotificationManager.shared.scheduleNotification(date: notificationTime)
                             }
                     }
                 )
@@ -94,7 +93,7 @@ struct SettingsView: View {
         }
         .padding(.horizontal)
         .onAppear {
-            pushNotificationManager.checkNotificationAuthorization { isEnable in
+            PushNotificationManager.shared.checkNotificationAuthorization { isEnable in
                 isNotificationsEnabled = isEnable
             }
         }

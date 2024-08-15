@@ -48,7 +48,7 @@ struct UserVocabularyCell: View {
                     .font(.system(size: 12))
             }
             .background {
-                NavigationLink(destination: SwipeCardsComponent(cards: [card])) {
+                NavigationLink(destination: SwipeCardsComponent(cards: [card], isDetailScreen: true)) {
                     EmptyView()
                 }
                 .buttonStyle(PlainButtonStyle())

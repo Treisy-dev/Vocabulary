@@ -59,7 +59,7 @@ struct TutorialView: View {
             Button(action: {
                 viewModel.nextState()
             }, label: {
-                Text("Next")
+                Text(viewModel.tutorialState == .favourites ? "OK" : "Next")
                     .foregroundStyle(Color.elements)
                     .frame(minWidth: 200, maxWidth: 215, minHeight: 35, maxHeight: 40)
             })

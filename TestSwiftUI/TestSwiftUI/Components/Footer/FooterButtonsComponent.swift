@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ShareSheet: UIViewControllerRepresentable {
-    let items: [Any]
+    @Binding var items: [UIImage]
 
     func makeUIViewController(context: Context) -> UIActivityViewController {
         let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
@@ -18,15 +18,14 @@ struct ShareSheet: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
-// TODO: поменять картинку и звук
 struct FooterButtonsComponent: View {
     var card: Card
-    @Binding var cardImage: UIImage?
+    @Binding var shareImage: [UIImage]
     @EnvironmentObject var footerManager: FooterManager
     var body: some View {
         HStack {
             Button(action: {
-                footerManager.saveImageToGallery(cardImage)
+                footerManager.saveImageToGallery(shareImage[0])
             }, label: {
                 Image(uiImage: .downloadIcon)
                     .frame(width: 56, height: 56)
@@ -70,6 +69,6 @@ struct FooterButtonsComponent: View {
 }
 
 #Preview {
-    return FooterButtonsComponent(card: Card(word: "word", partOfSpeach: "partOfSpeech", transcription: "transcription", description: "description", usageExample: "usageExample", synonyms: "synonyms"), cardImage: .constant(.img))
+    return FooterButtonsComponent(card: Card(word: "word", partOfSpeach: "partOfSpeech", transcription: "transcription", description: "description", usageExample: "usageExample", synonyms: "synonyms"), shareImage: .constant([UIImage.img]))
         .environmentObject(FooterManager())
 }

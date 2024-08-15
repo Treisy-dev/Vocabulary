@@ -40,6 +40,9 @@ struct SavedAlertComponent: View {
                closeAlert()
             }
         }
+        .onDisappear {
+            timer?.invalidate()
+        }
     }
 
     private func closeAlert() {

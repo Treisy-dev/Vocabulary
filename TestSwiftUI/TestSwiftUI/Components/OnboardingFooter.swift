@@ -17,14 +17,12 @@ struct OnboardingFooter: View {
                 .multilineTextAlignment(.center)
                 .font(.CharisSILR30)
                 .foregroundStyle(Color.elements)
-                .padding()
-                .fixedSize(horizontal: false, vertical: true)
+                .padding(.top, 24)
 
             Text(descriptionText)
                 .font(.system(size: 16))
                 .foregroundStyle(Color.elements)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 16)
 
             Button(action: {
                 viewModel.switchState()
@@ -72,7 +70,7 @@ struct OnboardingFooter: View {
         }
         .frame(maxWidth: .infinity)
         .background {
-           Rectangle()
+            Rectangle()
                 .fill(Color.appYellow)
                 .clipShape(
                     .rect(
@@ -82,12 +80,12 @@ struct OnboardingFooter: View {
                         topTrailingRadius: 30
                     )
                 )
+                .overlay(Color.elements.opacity(0.05))
         }
-
     }
 }
 #Preview {
-    @State var titleText: String = "Remember words effortlessly"
+    @State var titleText: String = "Remember words \neffortlessly"
     @State var descriptionText: String = "Learn new words every day and expand your vocabulary"
     return OnboardingFooter(titleText: $titleText, descriptionText: $descriptionText)
         .environmentObject(OnboardingViewModel())

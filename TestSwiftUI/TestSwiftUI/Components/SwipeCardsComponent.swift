@@ -17,7 +17,36 @@ struct SwipeCardsComponent: View {
     @StateObject var footerManager: FooterManager = FooterManager()
     @Environment(\.dismiss) var dismiss
     @State var isRatingShow: Bool = false
+    @State var shareImage: [UIImage] = [UIImage.img]
+    @State private var dragAlertOffset = CGSize.zero
     private let dragThreshold: CGFloat = 80.0
+    var isDetailScreen: Bool
+
+    var cardComponent: some View {
+        CardComponent(cardData: cards[isDetailScreen ? 0 : currentIndex], cardImage: $currentImage)
+            .zIndex(0.5)
+            .offset(x: self.dragState.translation.width, y: 0)
+            .animation(.interpolatingSpring(stiffness: 180, damping: 100), value: dragState.translation.width)
+            .gesture(self.dragGesture())
+            .transition(self.removalTransition)
+            .frame(maxWidth: .infinity)
+            .environmentObject(footerManager)
+    }
+
+    var shareCardComponent: some View {
+        VStack {
+            cardComponent
+            HStack {
+                Image(.vocabularyIcon)
+                    .resizable()
+                    .frame(width: 32, height: 40)
+                Text("Vocabulary")
+            }
+            .padding(.top)
+            .padding(.bottom, 8)
+            .background(Color.clear)
+        }
+    }
 
     var body: some View {
         VStack {
@@ -38,7 +67,8 @@ struct SwipeCardsComponent: View {
                     Spacer()
 
                     Button(action: {
-                        self.isShareTapped = true
+                        shareImage[0] = shareCardComponent.snapshot()
+                        isShareTapped = true
                     }) {
                         Image(uiImage: .shareIcon)
                             .resizable()
@@ -48,39 +78,59 @@ struct SwipeCardsComponent: View {
                     }
                     .frame(width: 56, height: 56)
                     .clipShape(Circle())
-                    .sheet(isPresented: $isShareTapped, content: {
-                        ShareSheet(items: [currentImage ?? .img, "\(cards[currentIndex].word) - \(cards[currentIndex].transcription)", ])
-                            .onDisappear {
-                                footerManager.isWordShared = true
-                            }
-                    })
                 }
                 .zIndex(0.6)
                 .padding(.horizontal)
 
-                if cards.indices.contains(currentIndex) {
-                    CardComponent(cardData: cards[currentIndex], cardImage: $currentImage)
-                        .zIndex(0.5)
-                        .offset(x: self.dragState.translation.width, y: 0)
-                        .animation(.interpolatingSpring(stiffness: 180, damping: 100), value: dragState.translation.width)
-                        .gesture(self.dragGesture())
-                        .transition(self.removalTransition)
-                        .environmentObject(footerManager)
+                if cards.indices.contains(isDetailScreen ? 0 : currentIndex) {
+                    cardComponent
                 }
             }
 
-            FooterButtonsComponent(card: cards[currentIndex], cardImage: $currentImage)
-            .frame(height: 64)
-            .environmentObject(footerManager)
+            FooterButtonsComponent(card: cards[isDetailScreen ? 0 : currentIndex], shareImage: $shareImage)
+                .frame(height: 64)
+                .environmentObject(footerManager)
         }
-        .onChange(of: currentIndex, perform: { value in
+        .sheet(isPresented: $isShareTapped, content: {
+            ShareSheet(items: $shareImage)
+                .onDisappear {
+                    footerManager.isWordShared = true
+                }
+        })
+        .onChange(of: isDetailScreen ? 0 : currentIndex, perform: { value in
             loadImageForWord(word: cards[value].word)
         })
+        .onChange(of: currentImage, perform: { value in
+            if value != nil {
+                shareImage[0] = shareCardComponent.snapshot()
+            }
+        })
         .onAppear {
-            loadImageForWord(word: cards[currentIndex].word)
+            loadImageForWord(word: cards[isDetailScreen ? 0 : currentIndex].word)
         }
         .toolbar(.hidden)
-        .overlay(alignment: .top, content: { alertOverlay })
+        .overlay(alignment: .top, content: {
+            alertOverlay
+                .offset(y: dragAlertOffset.height)
+                .gesture(
+                    DragGesture()
+                        .onChanged { gesture in
+                            if gesture.translation.height < 0 {
+                                dragAlertOffset = gesture.translation
+                            }
+                        }
+                        .onEnded { gesture in
+                            if gesture.translation.height < -50 {
+                                withAnimation {
+                                    footerManager.dropStates()
+                                }
+                            }
+                            dragAlertOffset = .zero
+                        }
+                )
+                .transition(.move(edge: .top))
+                .animation(.easeInOut, value: dragAlertOffset)
+        })
         .alert("Please leave a review", isPresented: $isRatingShow) {
             Button("Go to the AppStore", role: .cancel) {
                 print("appstore")
@@ -105,7 +155,7 @@ struct SwipeCardsComponent: View {
             }
 
             if footerManager.isWordSavedFavorite {
-                if footerManager.checkFavorites(word: cards[currentIndex].word) {
+                if footerManager.checkFavorites(word: cards[isDetailScreen ? 0 : currentIndex].word) {
                     SavedAlertComponent(titleText: "The word is saved to My Vocabulary", description: "You can find your words in My Vocabulary")
                         .zIndex(0.6)
                         .padding(.horizontal, 10)
@@ -154,6 +204,7 @@ struct SwipeCardsComponent: View {
             let nextIndex = currentIndex + 1
             if nextIndex < cards.count {
                 currentIndex = nextIndex
+                currentImage = nil
                 removalTransition = .move(edge: .leading)
             } else {
                 footerManager.isWordsEnd = true
@@ -162,6 +213,7 @@ struct SwipeCardsComponent: View {
             let previousIndex = currentIndex - 1
             if previousIndex >= 0 {
                 currentIndex = previousIndex
+                currentImage = nil
                 removalTransition = .move(edge: .trailing)
             }
         }
@@ -216,5 +268,5 @@ enum Direction {
 
 #Preview {
     let mainVM = MainViewModel()
-    return SwipeCardsComponent(cards: mainVM.cards)
+    return SwipeCardsComponent(cards: mainVM.cards, isDetailScreen: false)
 }
