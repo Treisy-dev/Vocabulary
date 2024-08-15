@@ -18,15 +18,15 @@ struct ShareSheet: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
+// TODO: поменять картинку и звук
 struct FooterButtonsComponent: View {
-    var image: UIImage
-    var audioName: String
-    var wordId: String
+    var card: Card
+    @Binding var cardImage: UIImage?
     @EnvironmentObject var footerManager: FooterManager
     var body: some View {
         HStack {
             Button(action: {
-                footerManager.saveImageToGallery(image)
+                footerManager.saveImageToGallery(cardImage)
             }, label: {
                 Image(uiImage: .downloadIcon)
                     .frame(width: 56, height: 56)
@@ -41,7 +41,7 @@ struct FooterButtonsComponent: View {
                 if footerManager.audioPlayer.isPlaying {
                     footerManager.stopSound()
                 } else {
-                    footerManager.playSound(sound: audioName)
+                    footerManager.playSoundForWord(word: card.word)
                 }
             }, label: {
                 Image(uiImage: footerManager.audioPlayer.isPlaying ? .listenFillIcon : .listenIcon)
@@ -53,13 +53,13 @@ struct FooterButtonsComponent: View {
             Spacer()
 
             Button(action: {
-                if footerManager.checkFavorites(id: wordId) {
-                    footerManager.removeFromFavorites(id: wordId)
+                if footerManager.checkFavorites(word: card.word) {
+                    footerManager.removeFromFavorites(word: card.word)
                 } else {
-                    footerManager.saveToFavorites(id: wordId)
+                    footerManager.saveToFavorites(card: card)
                 }
             }, label: {
-                Image(uiImage: footerManager.checkFavorites(id: wordId) == true ? .saveFavoriteFillIcon : .saveFavoriteIcon)
+                Image(uiImage: footerManager.checkFavorites(word: card.word) == true ? .saveFavoriteFillIcon : .saveFavoriteIcon)
                     .frame(width: 56, height: 56)
                     .background(Color.button.opacity(0.2))
             })
@@ -70,10 +70,6 @@ struct FooterButtonsComponent: View {
 }
 
 #Preview {
-    @State var image: UIImage = UIImage.img
-    @State var wordId: String = "1"
-    @State var audioName: String = "exampleSound"
-
-    return FooterButtonsComponent(image: image, audioName: audioName, wordId: wordId)
+    return FooterButtonsComponent(card: Card(word: "word", partOfSpeach: "partOfSpeech", transcription: "transcription", description: "description", usageExample: "usageExample", synonyms: "synonyms"), cardImage: .constant(.img))
         .environmentObject(FooterManager())
 }

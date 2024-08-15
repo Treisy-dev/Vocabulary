@@ -8,20 +8,9 @@
 import SwiftUI
 
 final class UserVocabularyViewModel: ObservableObject {
-    @AppStorage("favorites") var favorites: [String] = []
-    var mainViewModel: MainViewModel?
+    @AppStorage("favorites") var favorites: [Card] = []
 
-    @Published var favoriteCards: [Card] = []
-
-    func obtainData() {
-        guard let mainViewModel = mainViewModel else { return }
-        favoriteCards = mainViewModel.cards.filter { card in
-            favorites.contains(card.id)
-        }
-    }
-
-    func removeFromFavorites(id: String) {
-        favorites.removeAll(where: {$0 == id})
-        favoriteCards.removeAll(where: {$0.id == id})
+    func removeFromFavorites(word: String) {
+        favorites.removeAll(where: {$0.word == word})
     }
 }

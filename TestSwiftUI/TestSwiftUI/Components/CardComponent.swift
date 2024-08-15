@@ -9,31 +9,42 @@ import SwiftUI
 
 struct CardComponent: View {
     var cardData: Card
+    @Binding var cardImage: UIImage?
     @EnvironmentObject var footerManager: FooterManager
 
     var body: some View {
         ScrollView {
             ZStack {
-                Image(uiImage: UIImage(named: cardData.imageName) ?? UIImage())
-                    .resizable()
-                    .scaledToFill()
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(minHeight: 478)
+                if let image = cardImage {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(minHeight: 478)
+                } else {
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(Color.appLight)
+                        .overlay {
+                            ProgressView()
+                        }
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(minHeight: 478)
+                }
             }
             VStack {
                 Spacer()
 
                 VStack(alignment: .center, spacing: 4) {
-                    Text(cardData.title)
+                    Text(cardData.word)
                         .foregroundColor(.text)
                         .font(Font.CharisSILR)
 
-                    Text(cardData.type)
+                    Text(cardData.partOfSpeach)
                         .foregroundColor(.text)
                         .font(.system(size: 12))
                         .italic()
 
-                    Text(cardData.transcrtiption)
+                    Text(cardData.transcription)
                         .foregroundColor(.text)
                         .font(.system(size: 16))
                 }
@@ -51,7 +62,7 @@ struct CardComponent: View {
                     .font(.system(size: 16))
                     .padding()
 
-                Text(cardData.exampleText)
+                Text(cardData.usageExample)
                     .multilineTextAlignment(.center)
                     .foregroundColor(.text)
                     .font(.system(size: 16))
@@ -59,7 +70,7 @@ struct CardComponent: View {
                     .padding()
 
                 HStack {
-                    ForEach(cardData.atributes, id: \.self) { attribute in
+                    ForEach(cardData.synonyms.components(separatedBy: ", "), id: \.self) { attribute in
                         CardAttribute(text: attribute)
                     }
                 }
@@ -71,6 +82,6 @@ struct CardComponent: View {
 }
 
 #Preview {
-    CardComponent(cardData: Card(id: "1", imageName: "img", title: "Sycophant", type: "adjective", transcrtiption: "[ˈsɪkəfənt]", description: "A person who acts obsequiously toward someone important in order to gain advantage.", soundName: "exampleSound", exampleText: "He surrounded himself with sycophants who constantly praised him, regardless of his actions.", atributes: ["abc", "abc", "abc"]))
+    CardComponent(cardData: Card(word: "word", partOfSpeach: "partOfSpeech", transcription: "transcription", description: "description", usageExample: "usageExample", synonyms: "synonyms"), cardImage: .constant(.img))
         .environmentObject(FooterManager())
 }

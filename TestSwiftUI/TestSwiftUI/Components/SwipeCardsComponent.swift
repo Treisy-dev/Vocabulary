@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct SwipeCardsComponent: View {
-    @State private var currentIndex: Int = 0
+    @AppStorage("currentIndex") var currentIndex: Int = 0
     @State var cards: [Card]
+    @State var currentImage: UIImage? = nil
     @GestureState private var dragState = DragState.inactive
     @State private var removalTransition = AnyTransition.move(edge: .trailing)
     @State var isShareTapped: Bool = false
@@ -48,7 +49,7 @@ struct SwipeCardsComponent: View {
                     .frame(width: 56, height: 56)
                     .clipShape(Circle())
                     .sheet(isPresented: $isShareTapped, content: {
-                        ShareSheet(items: [UIImage(named: cards[currentIndex].imageName) ?? .img, "\(cards[currentIndex].title) - \(cards[currentIndex].transcrtiption)", ])
+                        ShareSheet(items: [currentImage ?? .img, "\(cards[currentIndex].word) - \(cards[currentIndex].transcription)", ])
                             .onDisappear {
                                 footerManager.isWordShared = true
                             }
@@ -58,7 +59,7 @@ struct SwipeCardsComponent: View {
                 .padding(.horizontal)
 
                 if cards.indices.contains(currentIndex) {
-                    CardComponent(cardData: cards[currentIndex])
+                    CardComponent(cardData: cards[currentIndex], cardImage: $currentImage)
                         .zIndex(0.5)
                         .offset(x: self.dragState.translation.width, y: 0)
                         .animation(.interpolatingSpring(stiffness: 180, damping: 100), value: dragState.translation.width)
@@ -68,13 +69,15 @@ struct SwipeCardsComponent: View {
                 }
             }
 
-            FooterButtonsComponent(
-                image: UIImage(named: cards[currentIndex].imageName) ?? .img,
-                audioName: cards[currentIndex].soundName,
-                wordId: cards[currentIndex].id
-            )
+            FooterButtonsComponent(card: cards[currentIndex], cardImage: $currentImage)
             .frame(height: 64)
             .environmentObject(footerManager)
+        }
+        .onChange(of: currentIndex, perform: { value in
+            loadImageForWord(word: cards[value].word)
+        })
+        .onAppear {
+            loadImageForWord(word: cards[currentIndex].word)
         }
         .toolbar(.hidden)
         .overlay(alignment: .top, content: { alertOverlay })
@@ -102,7 +105,7 @@ struct SwipeCardsComponent: View {
             }
 
             if footerManager.isWordSavedFavorite {
-                if footerManager.checkFavorites(id: cards[currentIndex].id) {
+                if footerManager.checkFavorites(word: cards[currentIndex].word) {
                     SavedAlertComponent(titleText: "The word is saved to My Vocabulary", description: "You can find your words in My Vocabulary")
                         .zIndex(0.6)
                         .padding(.horizontal, 10)
@@ -172,6 +175,13 @@ struct SwipeCardsComponent: View {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         } else {
             print("Невозможно создать URL")
+        }
+    }
+
+    private func loadImageForWord(word: String) {
+        Task {
+            let fetchedImage = await AppWriteManager.shared.getImageForWord(word: word)
+            currentImage = fetchedImage
         }
     }
 }

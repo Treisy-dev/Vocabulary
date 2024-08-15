@@ -10,11 +10,11 @@ import SwiftUI
 extension Font {
 
     static var CharisSILR: Font {
-        return Font.custom("CharisSILR", size: 24)
+        return Font.custom("CharisSIL", size: 24)
     }
 
     static var CharisSILR30: Font {
-        return Font.custom("CharisSILR", size: 30)
+        return Font.custom("CharisSIL", size: 30)
     }
 
 }

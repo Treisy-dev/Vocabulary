@@ -9,8 +9,9 @@ import PhotosUI
 import SwiftUI
 import AVFoundation
 
+@MainActor
 final class FooterManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
-    @AppStorage("favorites") var favorites: [String] = []
+    @AppStorage("favorites") var favorites: [Card] = []
     @Published var isPlaying: Bool = false
     @Published var isPhotoSaved: Bool = false
     @Published var isWordShared: Bool = false
@@ -26,20 +27,22 @@ final class FooterManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         isWordsEnd = false
     }
 
-    func playSound(sound: String) {
-        guard let asset = NSDataAsset(name: sound) else {
-            print("Аудио файл не найден в Assets")
-            return
-        }
-
-        do {
-            audioPlayer = try AVAudioPlayer(data: asset.data)
-            audioPlayer.delegate = self
-            audioPlayer.prepareToPlay()
-            isPlaying = true
-            audioPlayer.play()
-        } catch {
-            print("Ошибка воспроизведения аудио файла: \(error.localizedDescription)")
+    func playSoundForWord(word: String) {
+        configureAudioSession()
+        Task {
+            if let unwrapedSoundData = await AppWriteManager.shared.getSoundForWord(word: word) {
+                do {
+                    audioPlayer = try AVAudioPlayer(data: unwrapedSoundData)
+                    audioPlayer.delegate = self
+                    audioPlayer.prepareToPlay()
+                    isPlaying = true
+                    audioPlayer.play()
+                } catch {
+                    print("Ошибка воспроизведения аудио файла: \(error.localizedDescription)")
+                }
+            } else {
+                print("Ошибка при получении данных для звука.")
+            }
         }
     }
 
@@ -55,17 +58,17 @@ final class FooterManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         audioPlayer.stop()
     }
 
-    func checkFavorites(id: String) -> Bool {
-        return favorites.contains(where: {$0 == id})
+    func checkFavorites(word: String) -> Bool {
+        return favorites.contains(where: {$0.word == word})
     }
 
-    func saveToFavorites(id: String) {
-        favorites.append(id)
+    func saveToFavorites(card: Card) {
+        favorites.append(card)
         isWordSavedFavorite = true
     }
 
-    func removeFromFavorites(id: String) {
-        favorites.removeAll(where: {$0 == id})
+    func removeFromFavorites(word: String) {
+        favorites.removeAll(where: {$0.word == word})
         isWordSavedFavorite = true
     }
 
@@ -93,5 +96,14 @@ final class FooterManager: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
         items.append("\(word) - \(transcription)")
         return items
+    }
+
+    private func configureAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Ошибка настройки аудиосессии: \(error.localizedDescription)")
+        }
     }
 }

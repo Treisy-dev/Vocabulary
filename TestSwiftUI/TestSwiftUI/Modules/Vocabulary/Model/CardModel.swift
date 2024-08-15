@@ -7,16 +7,13 @@
 
 import Foundation
 
-struct Card: Codable {
-    let id: String
-    let imageName: String
-    let title: String
-    let type: String
-    let transcrtiption: String
+struct Card: Codable, Hashable {
+    let word: String
+    let partOfSpeach: String
+    let transcription: String
     let description: String
-    let soundName: String
-    let exampleText: String
-    let atributes: [String]
+    let usageExample: String
+    let synonyms: String
 }
 
 struct CardWrapper: Codable {

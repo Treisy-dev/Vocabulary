@@ -11,6 +11,9 @@
 		2A7B72E92C24D0960088808A /* FooterButtonsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B72E82C24D0960088808A /* FooterButtonsComponent.swift */; };
 		2A7B72EB2C24D0AB0088808A /* HintComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B72EA2C24D0AB0088808A /* HintComponent.swift */; };
 		2A7B72ED2C24D0C40088808A /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7B72EC2C24D0C40088808A /* Font.swift */; };
+		C308F8922C6E0E7900D78509 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C308F8912C6E0E7900D78509 /* LaunchScreen.storyboard */; };
+		C308F8952C6E15A500D78509 /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = C308F8942C6E15A500D78509 /* Appwrite */; };
+		C308F8972C6E168900D78509 /* AppWriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308F8962C6E168900D78509 /* AppWriteManager.swift */; };
 		C349E83C2C33357A00E2C788 /* UserVocabularyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E83B2C33357A00E2C788 /* UserVocabularyView.swift */; };
 		C349E83F2C3335C200E2C788 /* UserVocabularyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E83E2C3335C200E2C788 /* UserVocabularyViewModel.swift */; };
 		C349E8412C33383A00E2C788 /* UserVocabularyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349E8402C33383A00E2C788 /* UserVocabularyCell.swift */; };
@@ -49,7 +52,8 @@
 		2A7B72E82C24D0960088808A /* FooterButtonsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterButtonsComponent.swift; sourceTree = "<group>"; };
 		2A7B72EA2C24D0AB0088808A /* HintComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintComponent.swift; sourceTree = "<group>"; };
 		2A7B72EC2C24D0C40088808A /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		2A8D1B282C29E5570056A142 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C308F8912C6E0E7900D78509 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C308F8962C6E168900D78509 /* AppWriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWriteManager.swift; sourceTree = "<group>"; };
 		C349E83B2C33357A00E2C788 /* UserVocabularyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVocabularyView.swift; sourceTree = "<group>"; };
 		C349E83E2C3335C200E2C788 /* UserVocabularyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVocabularyViewModel.swift; sourceTree = "<group>"; };
 		C349E8402C33383A00E2C788 /* UserVocabularyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserVocabularyCell.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C308F8952C6E15A500D78509 /* Appwrite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +103,7 @@
 		2A7B72E32C24CFD10088808A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C308F8902C6E0E6500D78509 /* LaunchScreen */,
 				C357BE9B2C25ADA10099AB1F /* Footer */,
 				2A7B72E62C24D0790088808A /* SavedAlertComponent.swift */,
 				2A7B72EA2C24D0AB0088808A /* HintComponent.swift */,
@@ -130,6 +136,14 @@
 				C349E8762C3549CD00E2C788 /* AppStorage.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C308F8902C6E0E6500D78509 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C308F8912C6E0E7900D78509 /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		C349E8392C33355B00E2C788 /* UserVocabulary */ = {
@@ -170,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				C349E8822C35D7B600E2C788 /* PushNotificationManager.swift */,
+				C308F8962C6E168900D78509 /* AppWriteManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -193,7 +208,6 @@
 		C357BE712C24ACB30099AB1F /* TestSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				2A8D1B282C29E5570056A142 /* Info.plist */,
 				2A7B72E52C24CFE20088808A /* Extensions */,
 				2A7B72E42C24CFDD0088808A /* Fonts */,
 				C349E8882C36B86600E2C788 /* Managers */,
@@ -268,7 +282,6 @@
 		C37BA0702C2D859900E9925C /* Vocabulary */ = {
 			isa = PBXGroup;
 			children = (
-				C37BA0772C2D861800E9925C /* ViewModel */,
 				C37BA0762C2D860800E9925C /* Model */,
 				C37BA0752C2D85FF00E9925C /* View */,
 			);
@@ -297,13 +310,6 @@
 				C357BEA52C25C1200099AB1F /* CardModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		C37BA0772C2D861800E9925C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C37BA0C82C2DD91F00E9925C /* ViewModel */ = {
@@ -362,6 +368,9 @@
 			dependencies = (
 			);
 			name = TestSwiftUI;
+			packageProductDependencies = (
+				C308F8942C6E15A500D78509 /* Appwrite */,
+			);
 			productName = TestSwiftUI;
 			productReference = C357BE6F2C24ACB30099AB1F /* TestSwiftUI.app */;
 			productType = "com.apple.product-type.application";
@@ -390,6 +399,9 @@
 				Base,
 			);
 			mainGroup = C357BE662C24ACB30099AB1F;
+			packageReferences = (
+				C308F8932C6E15A500D78509 /* XCRemoteSwiftPackageReference "sdk-for-swift" */,
+			);
 			productRefGroup = C357BE702C24ACB30099AB1F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -405,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C37BA06A2C2D7D7100E9925C /* CharisSILR.ttf in Resources */,
+				C308F8922C6E0E7900D78509 /* LaunchScreen.storyboard in Resources */,
 				C357BE7A2C24ACB40099AB1F /* Preview Assets.xcassets in Resources */,
 				C357BE772C24ACB40099AB1F /* Assets.xcassets in Resources */,
 			);
@@ -421,6 +434,7 @@
 				2A7B72E92C24D0960088808A /* FooterButtonsComponent.swift in Sources */,
 				C357BEA62C25C1200099AB1F /* CardModel.swift in Sources */,
 				C37BA0D52C2EF98600E9925C /* TutorialView.swift in Sources */,
+				C308F8972C6E168900D78509 /* AppWriteManager.swift in Sources */,
 				C357BEB12C2B2F660099AB1F /* WordsEndComponent.swift in Sources */,
 				C37BA0D92C2EF9D800E9925C /* TutorialDescriptionComponent.swift in Sources */,
 				C37BA0C72C2DD90E00E9925C /* OnboardingViewModel.swift in Sources */,
@@ -590,9 +604,9 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This will help you save words";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Vocabulary\" Would Like to Add to your Photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -623,9 +637,9 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This will help you save words";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Vocabulary\" Would Like to Add to your Photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -662,6 +676,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C308F8932C6E15A500D78509 /* XCRemoteSwiftPackageReference "sdk-for-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/appwrite/sdk-for-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C308F8942C6E15A500D78509 /* Appwrite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C308F8932C6E15A500D78509 /* XCRemoteSwiftPackageReference "sdk-for-swift" */;
+			productName = Appwrite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C357BE672C24ACB30099AB1F /* Project object */;
 }

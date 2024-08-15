@@ -14,7 +14,7 @@ struct UserVocabularyView: View {
     var body: some View {
         VStack {
             CustomNavigationBarComponent(title: "My Vocabulary")
-            if viewModel.favoriteCards.count == 0 {
+            if viewModel.favorites.count == 0 {
                 VStack {
                     VStack(spacing: 10) {
                         Text("You don't have any words yet")
@@ -36,7 +36,7 @@ struct UserVocabularyView: View {
                         .frame(maxWidth: .infinity, maxHeight: 344)
                 }
             } else {
-                List(viewModel.favoriteCards, id: \.id) { card in
+                List(viewModel.favorites, id: \.self) { card in
                     UserVocabularyCell(card: card)
                         .listRowSeparator(.hidden)
                         .listRowBackground(Color.clear)
@@ -46,12 +46,6 @@ struct UserVocabularyView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             Spacer()
-        }
-        .onAppear {
-            if viewModel.mainViewModel == nil {
-                viewModel.mainViewModel = mainViewModel
-            }
-            viewModel.obtainData()
         }
         .background{
             Color.appLight
