@@ -73,7 +73,7 @@ struct OnboardingFooter: View {
         .frame(maxWidth: .infinity)
         .background {
             Rectangle()
-                .fill(Color.appYellow)
+                .fill(Color.onboardingFooter)
                 .overlay(Color.elements.opacity(0.05).blur(radius: 20))
                 .clipShape(
                     .rect(
