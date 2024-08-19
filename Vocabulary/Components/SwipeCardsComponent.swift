@@ -92,7 +92,7 @@ struct SwipeCardsComponent: View {
                 .environmentObject(footerManager)
         }
         .sheet(isPresented: $isShareTapped, content: {
-            ShareSheet(items: $shareImage)
+            ImageShareSheet(items: $shareImage)
                 .onDisappear {
                     footerManager.isWordShared = true
                 }
@@ -221,7 +221,7 @@ struct SwipeCardsComponent: View {
     }
 
     private func openAppStore() {
-        let appStoreUrl = "https://apps.apple.com/app/id\(ConfigData.appId)"
+        let appStoreUrl = "https://apps.apple.com/app/id\(ConfigData.appId)?action=write-review"
 
         if let url = URL(string: appStoreUrl) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

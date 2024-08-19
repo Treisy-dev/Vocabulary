@@ -8,5 +8,5 @@
 import Foundation
 
 struct ConfigData {
-    static let appId = ""
+    static let appId = "6636540259"
 }

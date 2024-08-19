@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ShareSheet: UIViewControllerRepresentable {
+struct ImageShareSheet: UIViewControllerRepresentable {
     @Binding var items: [UIImage]
 
     func makeUIViewController(context: Context) -> UIActivityViewController {

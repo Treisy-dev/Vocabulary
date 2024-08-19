@@ -39,7 +39,9 @@ struct OnboardingFooter: View {
             HStack{
                 Spacer()
                 Button(action: {
-                    print("Terms of Use")
+                    if let url = URL(string: "https://docs.google.com/document/d/1KgvdcHxZTHvysbu6JfdyZuQNautFL-6U0YM_EehhUj0/edit?usp=sharing") {
+                        UIApplication.shared.open(url)
+                    }
                 }, label: {
                     Text("Terms of Use")
                         .font(.system(size: 12))
@@ -48,16 +50,9 @@ struct OnboardingFooter: View {
                 })
                 Spacer()
                 Button(action: {
-                    print("Restore")
-                }, label: {
-                    Text("Restore")
-                        .font(.system(size: 12))
-                        .foregroundStyle(Color.elements)
-
-                })
-                Spacer()
-                Button(action: {
-                    print("Privacy Policy")
+                    if let url = URL(string: "https://docs.google.com/document/d/1xj_WSUfigUHhzTulr1uYCNp6pjAzhdZPmq98p5p8c9w/edit?usp=sharing") {
+                        UIApplication.shared.open(url)
+                    }
                 }, label: {
                     Text("Privacy Policy")
                         .font(.system(size: 12))

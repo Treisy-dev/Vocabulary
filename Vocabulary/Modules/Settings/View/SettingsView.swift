@@ -12,6 +12,7 @@ struct SettingsView: View {
     @State private var showTimePicker = false
     @State private var showingAlert = false
     @State private var notificationTime = Date()
+    @State private var isShareSheetShowing = false
 
     var alert: Alert {
         Alert(
@@ -86,11 +87,32 @@ struct SettingsView: View {
                 .padding(.top)
 
             SettingsCellComponent(title: "Privacy Policy", content: Image(uiImage: .rightArrowIcon))
+                .onTapGesture {
+                    if let url = URL(string: "https://docs.google.com/document/d/1xj_WSUfigUHhzTulr1uYCNp6pjAzhdZPmq98p5p8c9w/edit?usp=sharing") {
+                        UIApplication.shared.open(url)
+                    }
+                }
             SettingsCellComponent(title: "Terms of Use", content: Image(uiImage: .rightArrowIcon))
+                .onTapGesture {
+                    if let url = URL(string: "https://docs.google.com/document/d/1KgvdcHxZTHvysbu6JfdyZuQNautFL-6U0YM_EehhUj0/edit?usp=sharing") {
+                        UIApplication.shared.open(url)
+                    }
+                }
             SettingsCellComponent(title: "Share app", content: Image(uiImage: .rightArrowIcon))
+                .onTapGesture {
+                    isShareSheetShowing = true
+                }
             SettingsCellComponent(title: "Support", content: Image(uiImage: .rightArrowIcon))
+                .onTapGesture {
+                    if let url = URL(string: "https://forms.gle/ukrKxqvBGQB9SBW69") {
+                        UIApplication.shared.open(url)
+                    }
+                }
             Spacer()
         }
+        .sheet(isPresented: $isShareSheetShowing, content: {
+            BaseShareSheet(activityItems: ["https://apps.apple.com/app/id\(ConfigData.appId)"])
+        })
         .padding(.horizontal)
         .onAppear {
             PushNotificationManager.shared.checkNotificationAuthorization { isEnable in
